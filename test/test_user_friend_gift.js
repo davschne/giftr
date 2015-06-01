@@ -13,10 +13,9 @@ mom.pony = pony;
 dad.pony = pony;
 dad.bbgun = bbgun;
 
-console.assert(me.addFriend("Fred", fred));
-console.assert(me.addFriend("Mom", mom));
-console.assert(!me.addFriend("Sally", "Sally"));
-console.assert(me.addFriend("Fred", new Friend("Frederick")));
+console.assert(me.addFriend(fred));
+console.assert(me.addFriend(mom));
+console.assert(!me.addFriend("Sally"));
 
 console.assert(me.getFriend("Mom") == mom);
 console.assert(!me.getFriend("Dad"));

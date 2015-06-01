@@ -7,10 +7,10 @@
 
   Methods:
 
-    getFriend(string name)              : returns Friend
-    setFriend(string name, friend)      : returns boolean
-    removeFriend(string name)           : returns boolean
-    keys()                              : returns array of Friend names
+    getFriend(string name)      : returns Friend
+    addFriend(friend)           : returns boolean
+    removeFriend(string name)   : returns boolean
+    keys()                      : returns array of Friend names
 
  --------
 | Friend |

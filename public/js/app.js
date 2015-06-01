@@ -15,9 +15,9 @@ function User(name) {
     return friends[name];
   };
 
-  this.addFriend = function(name, friend) {
+  this.addFriend = function(friend) {
     if (friend instanceof Friend) {
-      friends[name] = friend;
+      friends[name] = friend.name;
       return true;
     } else {
       return false;
