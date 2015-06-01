@@ -18,16 +18,24 @@ body{
   }
   .starttext{
     font-family: 'Lato';
-    color: #323a45;
+    color: #f3efe6;
     margin: 0px;
     padding: 10px;
+    text-align: center;
   }
   .startbutton{
     border: 3px solid black;
     position: absolute;
     margin: 100px 0px 0px 100px;
-    width: 230px;
+    width: 175px;
+    height: 50px;
+    background-color: #323a45;
+  }
+  .startbutton:hover{
+    border: 3px solid black;
+    position: absolute;
+    margin: 100px 0px 0px 100px;
+    width: 175px;
     height: 50px;
     background-color: #fa9d35;
-    border-radius: 20%;
   }
