@@ -14,3 +14,21 @@ Client:
     - responsible for display and interaction
     - can get User data for display
     - can update User data
+
+Friend
+-name
+-D.O.B.
+-email
+-address
+-gifts: array of Gift objects
+
+Gifts
+-name
+-cost
+-description
+
+User
+-getFriend()
+-setFriend()
+-removeFriend()
+-keys()

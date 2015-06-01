@@ -1,0 +1,37 @@
+ ------
+| User |
+ ------
+  Data:
+
+    friends: object of Friends, indexed by name [private data]
+
+  Methods:
+
+    getFriend(string name)              : returns Friend
+    setFriend(string name, friend)      : returns boolean
+    removeFriend(friend)                : returns boolean
+    keys()                              : returns array of Friend names
+
+ --------
+| Friend |
+ --------
+  Data:
+
+    name     : string
+    birthday : Date?: month, day[, year]
+    email    : string
+    address  : object
+
+    gifts    : array of Gift objects
+
+ ------
+| Gift |
+ ------
+  Data:
+
+    name        : string
+    cost        : number
+    description : string
+
+
+
