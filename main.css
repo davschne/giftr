@@ -1,0 +1,33 @@
+body{
+  background-color: black;
+}
+.title{
+  font-size: 70pt;
+  font-family: 'Poiret One';
+  color: #fa9d35;
+  margin: 0px 0px 0px 50px;
+}
+.com{
+  font-size: 40pt;
+  font-family: 'Poiret One';
+  color: white;
+}
+.bgphoto{
+  margin: 0px 0px 100px 60px;
+  position: absolute;
+  }
+  .starttext{
+    font-family: 'Lato';
+    color: #323a45;
+    margin: 0px;
+    padding: 10px;
+  }
+  .startbutton{
+    border: 3px solid black;
+    position: absolute;
+    margin: 100px 0px 0px 100px;
+    width: 230px;
+    height: 50px;
+    background-color: #fa9d35;
+    border-radius: 20%;
+  }
