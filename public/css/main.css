@@ -9,6 +9,9 @@
 body{
   background-color: #323a45;
 }
+a{
+  text-decoration: none;
+}
 .title{
   font-size: 80pt;
   font-family: 'Poiret One';
