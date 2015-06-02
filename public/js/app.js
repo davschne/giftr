@@ -46,27 +46,27 @@ function User(name) {
   };
 }
 
-
-
-
-var user;
+// Testing with variables listed below.
+// var user = new User("Me");
+// var friend = new Friend("Hana");
+// user.addFriend(friend);
+// var friendPane = new FriendPane(user);
 
 function login() {
   var userName = $('.firstname').val();
-  user = getUser(userName);
-  var friendName = $('.friendfirstname').val();
-  var friend = new Friend (friendName);
-  user.addFriend(friend);
+  user = storage.getUser(userName);
+  var friendPane = new FriendPane(user);
 }
+
 $('startbutton').on('click', login);
 
 var storage = {
-  storeUser = function(user) {
+  storeUser: function(user) {
     var friends = user.getAllFriends();
     localStorage.setItem(user.name, JSON.stringify(friends));
   },
 
-  getUser = function(name) {
+  getUser: function(name) {
     var user = new User(name);
     var retrieved = localStorage.getItem(name);
     if (retrieved) {
@@ -74,7 +74,7 @@ var storage = {
     }
     return user;
   }
-}
+};
 
 // Restoring a user will look a bit like this:
 //
@@ -83,6 +83,38 @@ var storage = {
 // friendPane.showPeople();
 // etc.
 
+function FriendPane(user) {
+  $list = $('.friendsList');
+  var friends = user.getAllFriends();
+
+  for (var name in friends) {
+    if (friends.hasOwnProperty(name) && typeof friends[name] != "function") {
+      $list.append('<li class="friend">' + friends[name].name + '</li>');
+    }
+  }
+
+  this.unhighlight = function() {
+    $('li.friend').removeClass('hightlight');
+  };
+
+  $('.addFriend').on('click', function() {
+    $list.append('<input type="text" id="new-friend" placeholder="Name" autofocus /><button id="add">Add</button>');
+    $('#add').on('click', function() {
+      var newFriend = new Friend($('#new-friend').val());
+      user.addFriend(newFriend);
+      $list.append('<li class="friend">' + newFriend.name + '</li>');
+      $('#new-friend').remove();
+      $('#add').remove();
+    });
+    storage.storeUser(user);
+  });
+
+  $('li.friend').on('click', function(e) {
+    e.preventDefault();
+    this.unhighlight();
+    this.addClass('highlight');
+  });
+}
 //  ----------
 // | MainPane |
 //  ----------
@@ -102,7 +134,7 @@ function MainPane() {
 
     var $list;
 
-    function addGift();
+    function addGift(){}
 
     // Create list of gifts from Friend object
     $list = $('<ul class="mainList"></ul>');
@@ -117,11 +149,12 @@ function MainPane() {
     // Add gift idea
     $('#add-gift').on("click", function() {
       this.preventDefault();
-      $
-    })
+      
+    });
 
     // Select gift idea
 
     // Delete gift idea
   };
 }
+
