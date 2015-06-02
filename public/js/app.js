@@ -83,21 +83,25 @@ function Storage() {
 // addFriend(friend)
 
 // removeFriend(string name)
-function FriendPane() {
-  $list = $('ul');
+function FriendPane(user) {
+  $list = $('.friendsList');
 
-  this.addFriend(friend) {
-    $('.addFriend').on(click, function(e) {
-      e.preventDefault();
-      $list.append('<input type="text" id="new-friend" placeholder="Name" /><input type="submit" id="add" value="add" />');
-      $('#add').on(click, function(e) {
-        e.preventDefault();
-        $list.append('<li>' + $('#new-friend').value + '</li>')
-      });
+  for (var i = 0; i < user.friends.length; i++) {
+    $list.append('<li>' + user.friends[i].name + '</li>');
+  }
+
+  $('.addFriend').on('click', function() {
+    $list.append('<input type="text" id="new-friend" placeholder="Name" autofocus /><button id="add">Add</button>');
+    $('#add').on('click', function() {
+      $list.append('<li>' + $('#new-friend').val() + '</li>');
+      $('#new-friend').remove();
+      $('#add').remove();
     });
-  };
-
-  this.load(user) {
-
-  };
+  });
 }
+var friendPane = new FriendPane();
+
+
+
+
+
