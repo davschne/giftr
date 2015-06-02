@@ -103,9 +103,7 @@ function FriendPane(user) {
       $list.append('<li class="friend">' + newFriend.name + '</li>');
       removeAddField();
     });
-    $('#cancel').on('click', function() {
-      removeAddField();
-    })
+    $('#cancel').on('click', removeAddField);
     storage.storeUser(user);
   });
 
