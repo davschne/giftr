@@ -1,3 +1,10 @@
+/*  Giftr.com
+    Color Scheme:
+      #fa9d35 (orange)
+      #323a45 (blue/green)
+      #f3efe6 (off-white)
+      #ffffff (white)
+*/
 
 body{
   background-color: #323a45;
@@ -19,6 +26,7 @@ body{
   margin: 0px 0px 100px 60px;
   position: absolute;
   }
+
 .starttext{
   font-family: 'Lato';
   color: #f3efe6;
@@ -42,14 +50,6 @@ body{
   height: 50px;
   background-color: #fa9d35;
 }
-
-/*  Giftr.com
-    Color Scheme:
-      #fa9d35 (orange)
-      #323a45 (blue/green)
-      #f3efe6 (off-white)
-      #ffffff (white)
-*/
 
 .friends-pane {
   margin-left: 0px;
@@ -78,8 +78,6 @@ body{
   font-weight: bold;
 }
 
-
-
 .mainList {
 font-family: Lato;
 padding-left: 30px;
@@ -90,13 +88,3 @@ font-weight: bold;
 .friendsList li:nth-of-type(even) {
   background: #f3efe6;
 }
-
-/*.mainHeader {
-  background: #f3efe6;
-  font-family: 'Poiret One';
-  font-weight: bold;
-  color: #fa9d35;
-  text-align: center;
-  border-bottom: 2px solid black;
-}
-*/

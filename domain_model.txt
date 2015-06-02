@@ -7,10 +7,12 @@
 
   Methods:
 
-    getFriend(string name)      : returns Friend
-    addFriend(friend)           : returns boolean
-    removeFriend(string name)   : returns boolean
-    keys()                      : returns array of Friend names
+    getFriend(string name)             : returns Friend
+    addFriend(friend)                  : returns boolean
+    removeFriend(string name)          : returns boolean
+    keys()                             : returns array of Friend names
+    getAllFriends()                    : returns object of Friend objects
+    populateFriends(object of Friends) : reloads friends into User
 
  --------
 | Friend |
@@ -33,5 +35,43 @@
     cost        : number
     description : string
 
+ ---------
+| Storage |
+ ---------
+  Methods:
 
+    storeUser(user)       : stores user's friends to localStorage
+    getUser(string name)  : returns User object from storage
 
+ ------------
+| FriendPane |
+ ------------
+  Methods:
+
+    load(user)
+      - display user's friends
+      - set up event listeners for selecting, adding, and removing friends
+      (prob. by using methods below)
+
+    highlight(friend)
+
+      - update DOM to add class 'highlight' to friend
+
+    unhighlight()
+
+      - update DOM to remove class 'highlight' from all friends
+
+    addFriend(friend)
+
+    removeFriend(string name)
+
+ -------------
+| DisplayPane |
+ -------------
+  Methods:
+
+    clear()
+    enableGiftIdeasView(friend)
+      - use friend to populate the list of gifts
+      - enable event listeners (can modify friend.gifts)
+      - may want some internal functions to deal with the interface for adding gifts, reordering list, (and anything else)

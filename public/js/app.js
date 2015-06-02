@@ -17,7 +17,7 @@ function User(name) {
 
   this.addFriend = function(friend) {
     if (friend instanceof Friend) {
-      friends[name] = friend.name;
+      friends[friend.name] = friend;
       return true;
     } else {
       return false;
@@ -36,4 +36,33 @@ function User(name) {
   this.keys = function() {
     return Object.keys(friends);
   };
+
+  this.getAllFriends = function() {
+    return friends;
+  };
+
+  this.populateFriends = function(object) {
+    friends = object;
+  };
 }
+
+function Storage() {
+  this.storeUser = function(user) {
+    var friends = user.getAllFriends();
+    localStorage.setItem(user.name, JSON.stringify(friends));
+  };
+
+  this.restoreUser = function(name) {
+    var user = new User(name);
+    var friends = JSON.parse(localStorage.getItem(name));
+    user.populateFriends(friends);
+    return user;
+  };
+}
+
+// Restoring a user will look a bit like this:
+//
+// var name = $('input').value;
+// var user = storage.restoreUser(name);
+// friendPane.showPeople();
+// etc.
