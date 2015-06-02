@@ -47,10 +47,10 @@ function User(name) {
 }
 
 // Testing with variables listed below.
-// var user = new User("Me");
-// var friend = new Friend("Hana");
-// user.addFriend(friend);
-// var friendPane = new FriendPane(user);
+ var user = new User("Me");
+ var friend = new Friend("Hana");
+ user.addFriend(friend);
+ var friendPane = new FriendPane(user);
 
 function login() {
   var userName = $('.firstname').val();
@@ -149,7 +149,7 @@ function MainPane() {
     // Add gift idea
     $('#add-gift').on("click", function() {
       this.preventDefault();
-      
+
     });
 
     // Select gift idea
