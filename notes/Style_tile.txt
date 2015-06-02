@@ -1,0 +1,17 @@
+  _____________
+|  Style Tile   |
+  -------------
+
+  Orange: rgb(250, 157, 53)   #fa9d35   H:215 S:28 V:27
+  Blue/green: rgb(50, 58, 69)   #323a45   H:32 S:79 V:98
+  off-white:    rgb(243, 239, 230)    #f3efe6   H:42 S:5 V:95
+
+
+  Fonts:
+  Oxygen
+  Lato
+  Poiret One
+  <link href='http://fonts.googleapis.com/css?family=Lato|Poiret+One|Oxygen' rel='stylesheet' type='text/css'>
+
+  Link to sample Style tile that uses these colors:
+  https://dribbble.com/shots/1502616-Divestment-Styletile/attachments/226028

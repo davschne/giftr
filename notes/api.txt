@@ -1,0 +1,160 @@
+ --------
+| Friend |
+ --------
+  Data:
+
+    name     : string
+    birthday : Date?: month, day[, year]
+    email    : string
+    address  : object
+    events   : array of Event objects
+
+  Methods:
+
+    getField(string key)
+
+    setField(string key, value)
+
+      - store key: value
+      - value can be string or Date
+
+    removeField(string key)
+
+ -------
+| Event |
+ -------
+  Data:
+
+    title   : string
+    date    : Date?: month, day[, year]
+      - if no year: recurring annual event
+      - if year: one-time event
+    [friends : array of Friend objects]
+
+  Methods:
+
+ -------------
+| UserManager | [Server-side only]
+ -------------
+  Data:
+
+    users   : object of User objects indexed by name
+
+  Methods:
+
+    addUser(user)           : if valid input, add to users, update DB
+    removeUser(user)        : remove from users, update DB
+    logIn(email, password)  : if valid email, password, return User object
+    logOut(user)            : sync user to DB
+
+    validateUsername(string username) [private method]
+
+      - checks username for uniqueness
+      - checks other restrictions?
+
+ ------
+| User |
+ ------
+  Data:
+
+    (these all should probably be private data with getters and setters)
+
+    username   : string
+    password   : string
+    email      : string
+    friends    : object of Friend objects indexed by name?
+    events     : object of Events indexed by Date?
+
+  Methods:
+
+    [getUsername()]
+    setUsername(string username)        : returns boolean
+
+    setPassword(string password)        : returns boolean
+    validatePassword(string entry)      : returns boolean
+
+    getFriend(string name)              : returns Friend
+    setFriend(string name, friend)      : returns boolean
+
+      - if (friends[name])
+        - modify entry in friends
+        - if (name != friends[name].name)
+          - modify events associated with that friend
+      - else add entry in friends
+
+    addFriend(friend)
+    removeFriend(friend)
+
+      - remove friend from this.friends
+      - remove friend from associated events
+
+    getEvent(string title)
+    setEvent(event)
+    addEvent(event)
+    removeEvent(event)
+
+
+ ------------
+| FriendPane |
+ ------------
+
+  Data:
+
+  Methods:
+
+    showPeople()
+
+      - display user's friends
+
+    highlight(friend)
+
+      - update DOM to add class 'highlight' to friend
+
+    unhighlight()
+
+      - update DOM to remove class 'highlight' from all friends
+
+    addFriend(friend)
+
+      - user.addFriend(friend)
+      - showPeople()
+
+    removeFriend(friend)
+
+      - user.removeFriend(friend)
+      - showPeople()
+
+ -----------
+| EventPane |
+ -----------
+
+  Methods:
+
+    showEvents()
+
+      - display user's events
+
+    highlight(event)
+
+      - update DOM to add class 'highlight' to event
+
+    unhighlight()
+
+      - update DOM to remove class 'highlight' from all events
+
+    addEvent(event)
+
+      - user.addEvent(event)
+      - showEvents()
+
+    removeEvent(user, event)
+
+      - user.removeEvent(event)
+      - showEvents()
+
+
+
+
+
+
+

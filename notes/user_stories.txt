@@ -1,0 +1,9 @@
+As a user, I would like to...
+-record gift ideas.
+-store my data and access it later.
+-rank my gift ideas.
+-create profiles for multiple friends/family members
+-add, remove, edit, reorder gift ideas.
+-keep track of upcoming events and associate them with specific people.
+-record extra info about my friends (clothing size, address, interests, etc.)
+-record links to vendors.

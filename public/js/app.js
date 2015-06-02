@@ -66,3 +66,38 @@ function Storage() {
 // var user = storage.restoreUser(name);
 // friendPane.showPeople();
 // etc.
+
+//load(user)
+//   - display user's friends
+//   - set up event listeners for selecting, adding, and removing friends
+//   (prob. by using methods below)
+
+// highlight(friend)
+
+//   - update DOM to add class 'highlight' to friend
+
+// unhighlight()
+
+//   - update DOM to remove class 'highlight' from all friends
+
+// addFriend(friend)
+
+// removeFriend(string name)
+function FriendPane() {
+  $list = $('ul');
+
+  this.addFriend(friend) {
+    $('.addFriend').on(click, function(e) {
+      e.preventDefault();
+      $list.append('<input type="text" id="new-friend" placeholder="Name" /><input type="submit" id="add" value="add" />');
+      $('#add').on(click, function(e) {
+        e.preventDefault();
+        $list.append('<li>' + $('#new-friend').value + '</li>')
+      });
+    });
+  };
+
+  this.load(user) {
+
+  };
+}
