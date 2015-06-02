@@ -46,29 +46,33 @@ function User(name) {
   };
 }
 
-var user, friend;
+var user;
 
-function login(){
+function login() {
   var userName = $('.firstname').val();
-  user = getUser(userName);
+  user = storage.getUser(userName);
   var friendName = $('.friendfirstname').val();
-  friend = new Friend (friendName);
+  var friend = new Friend (friendName);
   user.addFriend(friend);
+  var friendPane = new FriendPane(user);
 }
+
 $('startbutton').on('click', login);
 
-function Storage() {
-  this.storeUser = function(user) {
+var storage = {
+  storeUser: function(user) {
     var friends = user.getAllFriends();
     localStorage.setItem(user.name, JSON.stringify(friends));
-  };
+  },
 
-  this.restoreUser = function(name) {
+  getUser: function(name) {
     var user = new User(name);
-    var friends = JSON.parse(localStorage.getItem(name));
-    user.populateFriends(friends);
+    var retrieved = localStorage.getItem(name);
+    if (retrieved) {
+      user.populateFriends(JSON.parse(retrieved));
+    }
     return user;
-  };
+  }
 }
 
 // Restoring a user will look a bit like this:
@@ -107,12 +111,51 @@ function FriendPane(user) {
       $list.append('<li>' + $('#new-friend').val() + '</li>');
       $('#new-friend').remove();
       $('#add').remove();
+      storage.storeUser();
     });
   });
 }
-var friendPane = new FriendPane();
 
+//  ----------
+// | MainPane |
+//  ----------
+//   Methods:
 
+//     clear()
+//     enableGiftIdeasView(friend)
+//       - use friend to populate the list of gifts
+//       - enable event listeners (can modify friend.gifts)
+//       - may want some internal functions to deal with the interface for adding gifts, reordering list, (and anything else)
 
+function MainPane() {
+  this.clear = function() {
+    $('.main-pane').empty();
+  };
+  this.enableGiftIdeasView = function(friend) {
 
+    var $list;
+
+    function addGift(){};
+
+    // Create list of gifts from Friend object
+    $list = $('<ul class="mainList"></ul>');
+    for (var i = 0; i < friend.gifts.length; i++) {
+      $list = $list.append('<li>' + friend.gifts[i] + '</li>');
+    }
+    // Put it in the DOM
+    $('.main-pane ul').replaceWith($list);
+
+    // Enable event listeners:
+
+    // Add gift idea
+    $('#add-gift').on("click", function() {
+      this.preventDefault();
+      $
+    })
+
+    // Select gift idea
+
+    // Delete gift idea
+  };
+}
 
