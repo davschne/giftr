@@ -36,12 +36,13 @@
     description : string
 
  ---------
-| Storage |
+| storage |
  ---------
   Methods:
 
     storeUser(user)       : stores user's friends to localStorage
-    getUser(string name)  : returns User object from storage
+    getUser(string name)  : returns User object from storage (if it exists),
+                            otherwise creates a new User
 
  ------------
 | FriendPane |
@@ -65,9 +66,9 @@
 
     removeFriend(string name)
 
- -------------
-| DisplayPane |
- -------------
+ ----------
+| MainPane |
+ ----------
   Methods:
 
     clear()
