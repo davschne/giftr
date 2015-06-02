@@ -51,7 +51,10 @@ var user = new User("Me");
 var friend = new Friend("Hana");
 user.addFriend(friend);
 user.addFriend(new Friend("David"));
+
+// Create the panes
 var friendPane = new FriendPane(user);
+var mainPane = new MainPane();
 
 function login() {
   var userName = $('.firstname').val();
@@ -126,46 +129,3 @@ function FriendPane(user) {
       .children('div').remove();
   }
 }
-//  ----------
-// | MainPane |
-//  ----------
-//   Methods:
-
-//     clear()
-//     enableGiftIdeasView(friend)
-//       - use friend to populate the list of gifts
-//       - enable event listeners (can modify friend.gifts)
-//       - may want some internal functions to deal with the interface for adding gifts, reordering list, (and anything else)
-
-function MainPane() {
-  this.clear = function() {
-    $('.main-pane').empty();
-  };
-  this.enableGiftIdeasView = function(friend) {
-
-    var $list;
-
-    function addGift(){}
-
-    // Create list of gifts from Friend object
-    $list = $('<ul class="mainList"></ul>');
-    for (var i = 0; i < friend.gifts.length; i++) {
-      $list = $list.append('<li>' + friend.gifts[i] + '</li>');
-    }
-    // Put it in the DOM
-    $('.main-pane ul').replaceWith($list);
-
-    // Enable event listeners:
-
-    // Add gift idea
-    $('#add-gift').on("click", function() {
-      this.preventDefault();
-
-    });
-
-    // Select gift idea
-
-    // Delete gift idea
-  };
-}
-
