@@ -7,10 +7,12 @@
 
   Methods:
 
-    getFriend(string name)      : returns Friend
-    addFriend(friend)           : returns boolean
-    removeFriend(string name)   : returns boolean
-    keys()                      : returns array of Friend names
+    getFriend(string name)             : returns Friend
+    addFriend(friend)                  : returns boolean
+    removeFriend(string name)          : returns boolean
+    keys()                             : returns array of Friend names
+    getAllFriends()                    : returns object of Friend objects
+    populateFriends(object of Friends) : reloads friends into User
 
  --------
 | Friend |
@@ -33,5 +35,10 @@
     cost        : number
     description : string
 
+ ---------
+| Storage |
+ ---------
+  Methods:
 
-
+    storeUser(user)       : stores user's friends to localStorage
+    getUser(string name)  : returns User object from storage
