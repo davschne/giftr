@@ -25,30 +25,55 @@ body{
 .bgphoto{
   margin: 0px 0px 100px 60px;
   position: absolute;
-  }
-
-.starttext{
-  font-family: 'Lato';
-  color: #f3efe6;
-  margin: 0px;
-  padding: 10px;
-  text-align: center;
 }
 .startbutton{
-  border: 2px solid black;
-  position: absolute;
-  margin: 100px 0px 0px 100px;
-  width: 175px;
-  height: 50px;
-  background-color: #323a45;
+    border: 3px solid black;
+    position: absolute;
+    margin: 300px 0px 0px 100px;
+    width: 300px;
+    height: 50px;
+    background-color: #323a45;
+    font-size: 12pt;
+    color: white;
 }
 .startbutton:hover{
-  border: 2px solid black;
+    border: 3px solid black;
+    position: absolute;
+    margin: 300px 0px 0px 100px;
+    width: 300px;
+    height: 50px;
+    background-color: #fa9d35;
+    font-size: 12pt;
+}
+.nameprompt{
+  color: white;
+  position: absolute;
+  font-family: 'Poiret One';
+  font-size: 22pt;
+  margin: 50px 0px 0px 100px;
+}
+.firstname{
   position: absolute;
   margin: 100px 0px 0px 100px;
-  width: 175px;
-  height: 50px;
-  background-color: #fa9d35;
+}
+.lastname{
+  position: absolute;
+  margin: 100px 0px 0px 300px;
+}
+.friendnameprompt{
+  color: white;
+  position: absolute;
+  font-family: 'Poiret One';
+  font-size: 22pt;
+  margin: 150px 0px 0px 100px;
+}
+.friendfirstname{
+  position: absolute;
+  margin: 200px 0px 0px 100px;
+}
+.friendlastname{
+  position: absolute;
+  margin: 200px 0px 0px 300px;
 }
 
 .friends-pane {
