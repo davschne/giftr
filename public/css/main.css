@@ -17,6 +17,10 @@ body{
   padding-left: 50px;
   border-bottom: 1px solid #f3efe6;
 }
+a{
+  text-decoration: none;
+  color: #fa9d35;
+}
 .com{
   font-size: 40pt;
   font-family: 'Poiret One';
@@ -142,4 +146,20 @@ font-weight: bold;
 
 .friendsList li:nth-of-type(even) {
   background: #f3efe6;
+}
+.editdelete{
+  float: right;
+}
+.delete{
+  border: 0px;
+  width: 15px;
+  padding: 0px 25px 5px 5px;
+}
+.edit{
+  border: 0px;
+  width: 15px;
+  padding: 0px 20px 0px 5px;
+}
+.highlight{
+  background-color: #fa9d35;
 }
