@@ -46,6 +46,17 @@ function User(name) {
   };
 }
 
+var user, friend;
+
+function login(){
+  var userName = $('.firstname').val();
+  user = getUser(userName);
+  var friendName = $('.friendfirstname').val();
+  friend = new Friend (friendName);
+  user.addFriend(friend);
+}
+$('startbutton').on('click', login);
+
 function Storage() {
   this.storeUser = function(user) {
     var friends = user.getAllFriends();
