@@ -99,10 +99,10 @@ function MainPane() {
     // Enable event listeners:
 
     // Add gift idea
-    $('#add-gift').on("click", function() {
-      this.preventDefault();
-      $
-    })
+    // $('#add-gift').on("click", function() {
+    //   this.preventDefault();
+    //   $
+    // })
 /*
     $('.addFriend').on('click', function() {
     $list.append('<input type="text" id="new-friend" placeholder="Name" autofocus /><button id="add">Add</button>');
