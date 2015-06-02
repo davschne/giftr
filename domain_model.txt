@@ -47,12 +47,14 @@
  ------------
 | FriendPane |
  ------------
-  Methods:
+  Constructor:
 
-    load(user)
+    FriendPane(user)
       - display user's friends
       - set up event listeners for selecting, adding, and removing friends
       (prob. by using methods below)
+
+  Methods:
 
     highlight(friend)
 

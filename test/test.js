@@ -9,9 +9,9 @@ var bbgun = new Gift("bbgun");
 var me = new User("Me");
 
 fred.sweater = sweater;
-mom.pony = pony;
-dad.pony = pony;
-dad.bbgun = bbgun;
+mom.gifts.push(pony);
+dad.gifts.push(pony);
+dad.gifts.push(bbgun);
 
 // Tests for User, Friend, Gift objects
 
@@ -36,3 +36,6 @@ var storage = new Storage();
 storage.storeUser(me);
 var you = storage.restoreUser("Me");
 console.log(you.keys() + " == " + me.keys());
+
+var mainPane = new MainPane();
+mainPane.enableGiftIdeasView(dad);

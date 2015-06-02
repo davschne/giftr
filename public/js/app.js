@@ -160,7 +160,7 @@ function MainPane() {
     // Add gift idea
     $('#add-gift').on("click", function() {
       this.preventDefault();
-      
+
     });
 
     // Select gift idea
