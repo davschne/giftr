@@ -52,7 +52,7 @@ function login(){
   var userName = $('.firstname').val();
   user = getUser(userName);
   var friendName = $('.friendfirstname').val();
-  friend = new Friend (friendName);
+  friend = new Friend(friendName);
   user.addFriend(friend);
 }
 $('startbutton').on('click', login);
