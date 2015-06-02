@@ -102,9 +102,10 @@
 
   Methods:
 
-    showPeople()
-
+    load(User)
       - display user's friends
+      - set up event listeners for selecting, adding, and removing friends
+      (call methods below)
 
     highlight(friend)
 
@@ -116,13 +117,7 @@
 
     addFriend(friend)
 
-      - user.addFriend(friend)
-      - showPeople()
-
     removeFriend(friend)
-
-      - user.removeFriend(friend)
-      - showPeople()
 
  -----------
 | EventPane |
