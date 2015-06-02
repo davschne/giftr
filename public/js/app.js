@@ -46,16 +46,14 @@ function User(name) {
   };
 }
 
-var user;
+var user, friend;
 
 function login(){
   var userName = $('.firstname').val();
-  if (storage.hasUser(userName)){
-    user = Storage.restoreUser(userName)
-  }
-  else {
-    user = new User(userName)
-  }
+  user = getUser(userName);
+  var friendName = $('.friendfirstname').val();
+  friend = new Friend (friendName);
+  user.addFriend(friend);
 }
 $('startbutton').on('click', login);
 
