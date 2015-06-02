@@ -88,12 +88,42 @@ body{
 }
 
 .friendsHeader, .mainHeader {
-  background: #f3efe6;
+background: #f3efe6;
+border-bottom: 2px solid black;
+}
+
+.friendsHeaderText, .mainHeaderText {
+  display: inline-block;
   font-family: 'Poiret One';
   font-weight: bold;
   color: #fa9d35;
-  text-align: center;
-  border-bottom: 2px solid black;
+  margin-right: 127px;
+  margin-bottom: 10px;
+}
+
+.addFriend {
+  font-size: 50px;
+  display: inline-block;
+  width: 50px;
+  border: 0px;
+  color: #323a45;
+}
+
+#add-gift {
+  font-size: 50px;
+  display: inline-block;
+  width: 50px;
+  border: 0px;
+  color: #323a45;
+  margin-left: 295px;
+}
+
+.addFriend:hover, #add-gift:hover {
+  color: #fa9d35;
+}
+
+.addFriend:active, #add-gift:active {
+  color: #323a45;
 }
 
 .friendsList {
