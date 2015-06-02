@@ -47,10 +47,11 @@ function User(name) {
 }
 
 // Testing with variables listed below.
-// var user = new User("Me");
-// var friend = new Friend("Hana");
-// user.addFriend(friend);
-// var friendPane = new FriendPane(user);
+var user = new User("Me");
+var friend = new Friend("Hana");
+user.addFriend(friend);
+user.addFriend(new Friend("David"));
+var friendPane = new FriendPane(user);
 
 function login() {
   var userName = $('.firstname').val();
@@ -93,27 +94,39 @@ function FriendPane(user) {
     }
   }
 
-  this.unhighlight = function() {
-    $('li.friend').removeClass('hightlight');
-  };
-
   $('.addFriend').on('click', function() {
-    $list.append('<input type="text" id="new-friend" placeholder="Name" autofocus /><button id="add">Add</button>');
+    $(this).hide();
+    $list.append('<input type="text" id="new-friend" placeholder="Name" autofocus /><button id="add">Add</button><button id="cancel">Cancel</button>');
     $('#add').on('click', function() {
       var newFriend = new Friend($('#new-friend').val());
       user.addFriend(newFriend);
       $list.append('<li class="friend">' + newFriend.name + '</li>');
-      $('#new-friend').remove();
-      $('#add').remove();
+      removeAddField();
     });
+    $('#cancel').on('click', function() {
+      removeAddField();
+    })
     storage.storeUser(user);
   });
 
-  $('li.friend').on('click', function(e) {
-    e.preventDefault();
-    this.unhighlight();
-    this.addClass('highlight');
+  function removeAddField() {
+    $('#new-friend').remove();
+    $('#add').remove();
+    $('#cancel').remove();
+    $('.addFriend').show();
+  }
+
+  $list.on('click', 'li:not(.highlight)', function() {
+    deselectAll();
+    $(this).addClass('highlight');
+    $(this).append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
   });
+
+  function deselectAll() {
+    $('.highlight')
+      .removeClass('highlight')
+      .children('div').remove();
+  }
 }
 //  ----------
 // | MainPane |
