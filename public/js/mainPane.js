@@ -59,7 +59,9 @@ function MainPane() {
         // Delete button event listener
         $list.find('.delete').on("click", function() {
           $(this).parents('li').remove();
+
           // TODO: remove from friend.gifts
+
         });
       });
     }
