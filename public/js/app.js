@@ -138,6 +138,6 @@ function FriendPane(user) {
   function deselectAll() {
     $('.highlight')
       .removeClass('highlight')
-      .children('div').remove();
+      .children('.editdelete').remove();
   }
 }

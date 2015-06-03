@@ -51,7 +51,6 @@ function MainPane() {
     // Select gift idea
 
     $('.mainList').on("click", "li:not(.highlight)", function() {
-      // console.log("click on li: " + this);
       deselectAll();
       $(this).addClass("highlight")
              .append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
@@ -78,7 +77,7 @@ function MainPane() {
     function deselectAll() {
       $('.highlight')
         .removeClass('highlight')
-        .children('button').remove();
+        .children('.editdelete').remove();
     }
   };
 }
