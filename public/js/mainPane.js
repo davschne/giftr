@@ -75,7 +75,7 @@ function MainPane() {
       // Add a new gift idea
       $('.mainHeader button').on("click", function() {
         $(this).hide();
-
+        deselectAll();
         // Create form field, edit & delete buttons
         $list.append('<span class="edit-item"><input type="text" id="new-gift" placeholder="new gift idea"><button id="add-gift">Add</button><button id="cancel-gift">Cancel</button></span>');
         $('#new-gift').focus();
@@ -100,7 +100,7 @@ function MainPane() {
         $('#cancel-gift').on('click', cancelAdd);
 
         // COMMIT TO STORAGE?
-        storage.storeUser(user);
+        // storage.storeUser(user);
       });
     }
 
@@ -110,7 +110,7 @@ function MainPane() {
     }
 
     function deselectAll() {
-      $('.highlight')
+      $('.mainList .highlight')
         .removeClass('highlight')
         .children('.editdelete').remove();
     }
