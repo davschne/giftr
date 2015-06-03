@@ -49,8 +49,10 @@ function User(name) {
 // Testing with variables listed below.
 var user = new User("Me");
 var friend = new Friend("Hana");
+friend.gifts = [new Gift("pony"), new Gift("bulldozer")]
 user.addFriend(friend);
 user.addFriend(new Friend("David"));
+
 
 // Create the panes
 var friendPane = new FriendPane(user);
@@ -121,6 +123,8 @@ function FriendPane(user) {
     deselectAll();
     $(this).addClass('highlight');
     $(this).append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
+    console.log(friends[$(this).text()]);
+    mainPane.enableGiftIdeasView(friends[$(this).text()]);
   });
 
   function deselectAll() {
