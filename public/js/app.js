@@ -88,6 +88,9 @@ function FriendPane(user) {
   function listenForAdd() {
     $('.friendsHeader button').on('click', function() {
       $(this).hide();
+      deselectAll();
+      $('.addNewGift').hide();
+      $('.mainList').empty();
       $list.append('<input type="text" class="new-friend" placeholder="Name"><button id="add">Add</button><button id="cancel">Cancel</button>');
       $('.new-friend').focus();
 
@@ -101,7 +104,7 @@ function FriendPane(user) {
 
       // Cancel add
       $('#cancel').on('click', removeAddField);
-      storage.storeUser(user);
+      // storage.storeUser(user);
     });
 
     function removeAddField() {
@@ -132,7 +135,11 @@ function FriendPane(user) {
         $('#add-friend').on('click', function() {
           var $newFriend = $('.new-friend').val();
           if (cachedItem != $newFriend) {
-            friends[cachedItem] = $newFriend;
+            var editFriend = new Friend($newFriend);
+            editFriend.gifts = friends[cachedItem].gifts;
+            user.addFriend(editFriend);
+            user.removeFriend(cachedItem);
+            $('.mainList').empty();
           }
           // Modify list
           $('ul .edit-item').replaceWith('<li><span class="friend">' + $newFriend + '</span></li>');
@@ -150,12 +157,13 @@ function FriendPane(user) {
         e.preventDefault();
         user.removeFriend($(this).parents('li').text());
         $(this).parents('li').remove();
+        $('.mainList').empty();
       });
     });
   }
 
   function deselectAll() {
-    $('.highlight')
+    $('.friendsList .highlight')
       .removeClass('highlight')
       .children('.editdelete').remove();
   }
