@@ -134,11 +134,35 @@ function FriendPane(user) {
 
     mainPane.enableGiftIdeasView(friends[$(this).text()]);
 
+    // Edit button event listener
+    $list.find('.edit').on("click", function() {
+      $item = $(this).parents('li');
+      var cachedItem = $item.text();
+      $item.replaceWith('<span class="edit-item"><input type="text" id="new-friend" value="' + cachedItem + '"><button id="add-friend">Save</button><button id="cancel-friend">Cancel</button></span>');
+      $('#new-friend').focus();
+
+      // Confirm edit
+      $('#add-friend').on('click', function() {
+        var $newFriend = $('#new-friend').val();
+        if (cachedItem != $newFriend) {
+          friends[cachedItem] = $newFriend;
+        }
+        // Modify list
+        $('ul .edit-item').replaceWith('<li><span class="friend">' + $newFriend + '</span></li>');
+      });
+
+      // Cancel edit
+      $('#cancel-friend').on('click', function() {
+        $('ul .edit-item').replaceWith('<li><span class="friend">' + cachedItem + '</span></li>')
+        $('.mainHeader button').show();
+      });
+    });
+
     // Delete button event listener
     $list.find('.delete').on("click", function(e) {
       e.preventDefault();
+      user.removeFriend($(this).parents('li').text());
       $(this).parents('li').remove();
-      // remove from friends
     });
   });
 
