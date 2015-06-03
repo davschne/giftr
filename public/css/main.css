@@ -112,7 +112,7 @@ border-bottom: 2px solid black;
   margin-bottom: 10px;
 }
 
-.add {
+.add, .addNewGift {
   font-size: 50px;
   display: inline-block;
   width: 50px;
@@ -196,7 +196,6 @@ border-bottom: 2px solid black;
 .newfriend{
   display: block;
 }
-
 
 
 
