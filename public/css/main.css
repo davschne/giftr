@@ -122,29 +122,29 @@ commented out for possible later use. -Will
   margin-top: 20px;
   border: 3px solid black;
   border-radius: 6px;
+  min-width: 250px;
 }
-
-.friendsHeader, .mainHeader {
-background: #f3efe6;
-border-bottom: 2px solid black;
+.friendsHeader, .mainHeader{
+  background: #f3efe6;
+  border-bottom: 2px solid black;
 }
 
 .friendsHeaderText, .mainHeaderText {
-  display: inline-block;
   font-family: 'Poiret One';
   font-weight: bold;
   color: #fa9d35;
-  margin-left: 5px;
-  margin-right: 123px;
-  margin-bottom: 10px;
+  margin: auto;
+  display: inline-block;
+  padding-left: 10px;
 }
 
-.add {
+.add, .addNewGift {
   font-size: 50px;
   display: inline-block;
   width: 50px;
   border: 0px;
   color: #323a45;
+  float: right;
 }
 
 /*#add-gift {
@@ -159,15 +159,19 @@ border-bottom: 2px solid black;
 
 .add:hover {
   color: #fa9d35;
+  float: right;
 }
 
 .add:active {
   color: #323a45;
+  float: right;
 }
 
 .friendsList, .mainList {
   list-style-type: none;
   font-family: Lato;
+  height: 500px;
+  margin: 10px 0px 0px 10px;
 }
 
 .editdelete {
@@ -213,8 +217,11 @@ border-bottom: 2px solid black;
   text-align: center;
   font-size: 18pt;
   font-family: 'Poiret One';
+  margin: 0px 10px 0px 0px;
 }
-
+.new-friend{
+  display: block;
+}
 
 
 
