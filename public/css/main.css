@@ -29,25 +29,26 @@ a{
 .bgphoto{
   margin: 0px 0px 100px 60px;
   position: absolute;
+  z-index: -10;
 }
 .startbutton{
-    border: 3px solid black;
-    position: absolute;
-    margin: 300px 0px 0px 100px;
-    width: 300px;
-    height: 50px;
-    background-color: #323a45;
-    font-size: 12pt;
-    color: white;
+  border: 3px solid black;
+  position: absolute;
+  margin: 300px 0px 0px 100px;
+  width: 300px;
+  height: 50px;
+  background-color: #323a45;
+  font-size: 12pt;
+  color: white;
 }
 .startbutton:hover{
-    border: 3px solid black;
-    position: absolute;
-    margin: 300px 0px 0px 100px;
-    width: 300px;
-    height: 50px;
-    background-color: #fa9d35;
-    font-size: 12pt;
+  border: 3px solid black;
+  position: absolute;
+  margin: 300px 0px 0px 100px;
+  width: 300px;
+  height: 50px;
+  background-color: #fa9d35;
+  font-size: 12pt;
 }
 .nameprompt{
   color: white;
@@ -60,6 +61,10 @@ a{
   position: absolute;
   margin: 100px 0px 0px 100px;
 }
+
+/*
+Last name and friend name are no longer in main.html
+commented out for possible later use. -Will
 .lastname{
   position: absolute;
   margin: 100px 0px 0px 300px;
@@ -79,6 +84,7 @@ a{
   position: absolute;
   margin: 200px 0px 0px 300px;
 }
+*/
 
 .friends-pane {
   margin-left: 0px;
@@ -101,7 +107,8 @@ border-bottom: 2px solid black;
   font-family: 'Poiret One';
   font-weight: bold;
   color: #fa9d35;
-  margin-right: 127px;
+  margin-left: 5px;
+  margin-right: 123px;
   margin-bottom: 10px;
 }
 
@@ -119,7 +126,7 @@ border-bottom: 2px solid black;
   width: 50px;
   border: 0px;
   color: #323a45;
-  margin-left: 295px;
+  margin-left: 290px;
 }
 
 .addFriend:hover, #add-gift:hover {
@@ -131,35 +138,63 @@ border-bottom: 2px solid black;
 }
 
 .friendsList {
-  font-family: Lato;
-  padding-left: 30px;
-  color: #323a45;
-  font-weight: bold;
+  text-align: center;
 }
 
-.mainList {
-font-family: Lato;
-padding-left: 30px;
-color: #323a45;
-font-weight: bold;
+.friendsList, .mainList {
+  list-style-type: none;
+  font-family: Lato;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #323a45;
+  font-weight: bold;
 }
 
 .friendsList li:nth-of-type(even) {
   background: #f3efe6;
 }
-.editdelete{
+
+.editdelete {
   float: right;
 }
-.delete{
+
+.delete {
   border: 0px;
   width: 15px;
   padding: 0px 25px 5px 5px;
 }
-.edit{
+
+.edit {
   border: 0px;
   width: 15px;
   padding: 0px 20px 0px 5px;
 }
-.highlight{
+
+.highlight {
   background-color: #fa9d35;
 }
+
+.accountButtonContainer {
+  float: right;
+  display: inline-block;
+}
+
+.accountButtons {
+  background: #f3efe6;
+  color: #323a45;
+}
+
+.accountButtons:hover {
+  color: #fa9d35;
+  border: 1px solid #fa9d35;
+}
+
+.accountButtons:active {
+  color: #323a45;
+  border: 1px solid #323a45;
+}
+
+
+
+
+
