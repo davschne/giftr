@@ -1,14 +1,3 @@
-//  ----------
-// | MainPane |
-//  ----------
-//   Methods:
-
-//     clear()
-//     enableGiftIdeasView(friend)
-//       - use friend to populate the list of gifts
-//       - enable event listeners (can modify friend.gifts)
-//       - may want some internal functions to deal with the interface for adding gifts, reordering list, (and anything else)
-
 function MainPane() {
   this.clear = function() {
     $('.main-pane').empty();
@@ -29,19 +18,41 @@ function MainPane() {
 
     // Enable event listeners:
 
-    //Add gift idea
+    // Add gift idea
 
     $('#add-gift').on("click", function(e) {
       e.preventDefault();
+
       // Create form field, edit & delete buttons
-      $list.append('<li><input type="text" id="new-gift" placeholder="new gift idea" autofocus /></li>');
+      $list.append('<input type="text" id="new-gift" placeholder="new gift idea" autofocus /><button id="save-gift">Add</button><button id="cancel-gift">Cancel</button>');
+
+      $('#save-gift').on('click', function() {
+        var gift = new Gift($('#new-gift').val());
+
+        // Save gift to friend object
+        friend.gifts.push(gift);
+
+        // Append to list
+        $list.append('<li><span class="gift">' + gift.name + '</span></li>');
+        removeAddField();
+      });
+
+      $('#cancel').on('click', removeAddField);
+      storage.storeUser(user);
       $list.append('<button id="add-gift">Add</button>');
     });
+
+    function removeAddField() {
+      $('#new-gift').remove();
+      $('#add').remove();
+      $('#cancel').remove();
+      $('.addFriend').show();
+    }
 
     // Select gift idea
 
     $('.mainList').on("click", "li:not(.highlight)", function() {
-      console.log("click on li: " + this);
+      // console.log("click on li: " + this);
       deselectAll();
       $(this).addClass("highlight")
              .append('<button class="edit" id="edit-gift">Edit</button><button class="delete" id="delete-gift">Delete</button>');
@@ -49,7 +60,7 @@ function MainPane() {
       // Edit button event listener
       $('#edit-gift').on("click", function(e) {
         e.preventDefault();
-        console.log("click on edit button");
+        // console.log("click on edit button");
         $item = $(this).parents('li');
         $item.replaceWith('<input type="text" id="new-gift" value="' + $item.children('.gift').text() + '" autofocus /><button></button>');
       });
@@ -70,20 +81,5 @@ function MainPane() {
         .removeClass('highlight')
         .children('button').remove();
     }
-/*
-
-
-    $('#add').on('click', function() {
-      this.addFriend($('#new-friend').val());
-      $('#new-friend').remove();
-      $('#add').remove();
-    });
-
-  this.addFriend = function(friend) {
-    $list.append('<li>' + friend + '</li>');
-  };
-*/
-
-
   };
 }

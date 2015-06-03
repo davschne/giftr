@@ -97,7 +97,7 @@ function FriendPane(user) {
     }
   }
 
-  $('.addFriend').on('click', function() {
+  $('.friendsHeader button').on('click', function() {
     $(this).hide();
     $list.append('<input type="text" id="new-friend" placeholder="Name" autofocus /><button id="add">Add</button><button id="cancel">Cancel</button>');
     $('#add').on('click', function() {
@@ -114,7 +114,7 @@ function FriendPane(user) {
     $('#new-friend').remove();
     $('#add').remove();
     $('#cancel').remove();
-    $('.addFriend').show();
+    $('.friendsHeader button').show();
   }
 
   $list.on('click', 'li:not(.highlight)', function() {
@@ -128,4 +128,7 @@ function FriendPane(user) {
       .removeClass('highlight')
       .children('div').remove();
   }
+
+  var mainPane = new MainPane();
+  mainPane.enableGiftIdeasView(friend);
 }

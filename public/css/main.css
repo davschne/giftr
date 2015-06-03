@@ -105,7 +105,7 @@ border-bottom: 2px solid black;
   margin-bottom: 10px;
 }
 
-.addFriend {
+.add {
   font-size: 50px;
   display: inline-block;
   width: 50px;
@@ -113,20 +113,20 @@ border-bottom: 2px solid black;
   color: #323a45;
 }
 
-#add-gift {
+/*#add-gift {
   font-size: 50px;
   display: inline-block;
   width: 50px;
   border: 0px;
   color: #323a45;
   margin-left: 295px;
-}
+}*/
 
-.addFriend:hover, #add-gift:hover {
+.add:hover {
   color: #fa9d35;
 }
 
-.addFriend:active, #add-gift:active {
+.add:active {
   color: #323a45;
 }
 
