@@ -93,12 +93,14 @@ function FriendPane(user) {
   $list = $('.friendsList');
   var friends = user.getAllFriends();
 
+  // populate list
   for (var name in friends) {
     if (friends.hasOwnProperty(name) && typeof friends[name] != "function") {
       $list.append('<li class="friend">' + friends[name].name + '</li>');
     }
   }
 
+  // Add new friend
   $('.friendsHeader button').on('click', function() {
     $(this).hide();
     $list.append('<input type="text" id="new-friend" placeholder="Name" autofocus /><button id="add">Add</button><button id="cancel">Cancel</button>');
@@ -119,6 +121,7 @@ function FriendPane(user) {
     $('.friendsHeader button').show();
   }
 
+  // Select a friend
   $list.on('click', 'li:not(.highlight)', function() {
     deselectAll();
     $(this).addClass('highlight');

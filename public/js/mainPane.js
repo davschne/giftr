@@ -6,8 +6,6 @@ function MainPane() {
 
     var $list;
 
-    // function addGift();
-
     // Create list of gifts from Friend object
     $list = $('<ul class="mainList"></ul>');
     for (var i = 0; i < friend.gifts.length; i++) {
@@ -18,15 +16,15 @@ function MainPane() {
 
     // Enable event listeners:
 
-    // Add gift idea
-
-    $('#add-gift').on("click", function(e) {
-      e.preventDefault();
+    // Add a new gift idea
+    $('.mainHeader button').on("click", function() {
+      $(this).hide();
 
       // Create form field, edit & delete buttons
-      $list.append('<input type="text" id="new-gift" placeholder="new gift idea" autofocus /><button id="save-gift">Add</button><button id="cancel-gift">Cancel</button>');
+      $list.append('<input type="text" id="new-gift" placeholder="new gift idea" autofocus /><button id="add-gift">Add</button><button id="cancel-gift">Cancel</button>');
 
-      $('#save-gift').on('click', function() {
+      // Confirm add
+      $('#add-gift').on('click', function() {
         var gift = new Gift($('#new-gift').val());
 
         // Save gift to friend object
@@ -37,16 +35,16 @@ function MainPane() {
         removeAddField();
       });
 
-      $('#cancel').on('click', removeAddField);
+      // Cancel add
+      $('#cancel-gift').on('click', removeAddField);
       storage.storeUser(user);
-      $list.append('<button id="add-gift">Add</button>');
     });
 
     function removeAddField() {
       $('#new-gift').remove();
-      $('#add').remove();
-      $('#cancel').remove();
-      $('.addFriend').show();
+      $('#add-gift').remove();
+      $('#cancel-gift').remove();
+      $('.mainHeader button').show();
     }
 
     // Select gift idea
@@ -55,7 +53,7 @@ function MainPane() {
       // console.log("click on li: " + this);
       deselectAll();
       $(this).addClass("highlight")
-             .append('<button class="edit" id="edit-gift">Edit</button><button class="delete" id="delete-gift">Delete</button>');
+             .append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
 
       // Edit button event listener
       $('#edit-gift').on("click", function(e) {
@@ -63,15 +61,15 @@ function MainPane() {
         // console.log("click on edit button");
         $item = $(this).parents('li');
         $item.replaceWith('<input type="text" id="new-gift" value="' + $item.children('.gift').text() + '" autofocus /><button></button>');
+        // modify entry in friend.gifts
       });
 
       // Delete button event listener
-      $('#delete-gift').on("click", function(e) {
+      $('.mainList .delete').on("click", function(e) {
         e.preventDefault();
-        console.log("click on delete button");
         $(this).parents('li').remove();
+        // remove from friend.gifts
       });
-
     });
 
     // function select();
