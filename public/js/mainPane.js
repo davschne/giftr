@@ -75,11 +75,9 @@ function MainPane() {
 
         // Confirm add
         $('#add-gift').on('click', function() {
-
           var entry = $('#new-gift').val();
-          // TODO: Write cancelAdd() function
           if (!entry) {
-            // cancelAdd();
+            cancelAdd();
           }
           var gift = new Gift($('#new-gift').val());
 
@@ -92,13 +90,16 @@ function MainPane() {
         });
 
         // Cancel add
-        $('#cancel-gift').on('click', function() {
-          $('.mainList .edit-item').remove();
-          $('.mainHeader button').show();
-        });
+        $('#cancel-gift').on('click', cancelAdd);
+
         // COMMIT TO STORAGE?
         storage.storeUser(user);
       });
+    }
+
+    function cancelAdd() {
+      $('.mainList .edit-item').remove();
+      $('.mainHeader button').show();
     }
 
     function deselectAll() {
