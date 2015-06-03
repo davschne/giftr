@@ -11,6 +11,7 @@ function MainPane() {
 
     function buildList() {
       // Create list of gifts from Friend object
+      $('.addNewGift').show();
       $list = $('<ul class="mainList"></ul>');
       for (var i = 0; i < friend.gifts.length; i++) {
         $list = $list.append('<li><span class="gift">' + friend.gifts[i].name + '</span></li>');
@@ -30,19 +31,21 @@ function MainPane() {
         $(this).find('.edit').on("click", function() {
           $item = $(this).parents('li');
           var cachedItem = $item.text();
-          console.log(cachedItem);
           $item.replaceWith('<span class="edit-item"><input type="text" id="new-gift" value="' + $item.children('.gift').text() + '"><button id="add-gift">Save</button><button id="cancel-gift">Cancel</button></span>');
           $('#new-gift').focus();
 
           // Confirm edit
           $('#add-gift').on('click', function() {
-
-            var gift = new Gift($('#new-gift').val());
-
-            // TODO: Save gift to friend object
-
+            var $gift = $('#new-gift').val();
+            if (cachedItem != $gift) {
+              for (var i = 0; i < friend.gifts.length; i++) {
+                if (friend.gifts[i].name == cachedItem) {
+                  friend.gifts[i].name = $gift;
+                }
+              }
+            }
             // Modify list
-            $('ul .edit-item').replaceWith('<li><span class="gift">' + gift.name + '</span></li>');
+            $('ul .edit-item').replaceWith('<li><span class="gift">' + $gift + '</span></li>');
           });
 
           // Cancel edit
@@ -58,10 +61,12 @@ function MainPane() {
 
         // Delete button event listener
         $list.find('.delete').on("click", function() {
+          for (var i = 0; i < friend.gifts.length; i++) {
+            if (friend.gifts[i].name == $(this).parents('li').text()) {
+              friend.gifts.splice(i, 1);
+            }
+          }
           $(this).parents('li').remove();
-
-          // TODO: remove from friend.gifts
-
         });
       });
     }
@@ -70,7 +75,7 @@ function MainPane() {
       // Add a new gift idea
       $('.mainHeader button').on("click", function() {
         $(this).hide();
-
+        deselectAll();
         // Create form field, edit & delete buttons
         $list.append('<span class="edit-item"><input type="text" id="new-gift" placeholder="new gift idea"><button id="add-gift">Add</button><button id="cancel-gift">Cancel</button></span>');
         $('#new-gift').focus();
@@ -95,7 +100,7 @@ function MainPane() {
         $('#cancel-gift').on('click', cancelAdd);
 
         // COMMIT TO STORAGE?
-        storage.storeUser(user);
+        // storage.storeUser(user);
       });
     }
 
@@ -105,7 +110,7 @@ function MainPane() {
     }
 
     function deselectAll() {
-      $('.highlight')
+      $('.mainList .highlight')
         .removeClass('highlight')
         .children('.editdelete').remove();
     }
