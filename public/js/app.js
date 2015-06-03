@@ -131,8 +131,15 @@ function FriendPane(user) {
     deselectAll();
     $(this).addClass('highlight');
     $(this).append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
-    console.log(friends[$(this).text()]);
+
     mainPane.enableGiftIdeasView(friends[$(this).text()]);
+
+    // Delete button event listener
+    $list.find('.delete').on("click", function(e) {
+      e.preventDefault();
+      $(this).parents('li').remove();
+      // remove from friends
+    });
   });
 
   function deselectAll() {
