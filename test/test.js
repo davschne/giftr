@@ -32,9 +32,23 @@ console.log(me.keys() + " == Fred");
 
 // Tests for Storage object
 
-var storage = new Storage();
+var firebase = new Firebase('https://incandescent-inferno-6099.firebaseio.com/');
+firebase.set("testUser");
+
+var storage = new Storage(firebase.child("testUser"));
 storage.storeUser(me);
-var you = storage.restoreUser("Me");
+
+dbRef.once("value", function(snapshot) {
+  var data = snapshot.val();
+  var user = new User(data.name);
+  user.populateFriends(data.friends);
+  return user;
+}, function(errorObject) {
+  console.log("Error retrieving data: " + errorObject.code);
+});
+
+var you = storage.getUser();
+console.log(you);
 console.log(you.keys() + " == " + me.keys());
 
 var mainPane = new MainPane();
