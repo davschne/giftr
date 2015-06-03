@@ -34,7 +34,7 @@ a{
 .startbutton{
   border: 3px solid black;
   position: absolute;
-  margin: 300px 0px 0px 100px;
+  margin: 150px 0px 0px 100px;
   width: 300px;
   height: 50px;
   background-color: #323a45;
@@ -44,7 +44,7 @@ a{
 .startbutton:hover{
   border: 3px solid black;
   position: absolute;
-  margin: 300px 0px 0px 100px;
+  margin: 150px 0px 0px 100px;
   width: 300px;
   height: 50px;
   background-color: #fa9d35;
@@ -193,6 +193,11 @@ border-bottom: 2px solid black;
 .accountButtons:active {
   color: #323a45;
   border: 1px solid #323a45;
+}
+.welcome{
+  text-align: center;
+  font-size: 18pt;
+  font-family: 'Poiret One';
 }
 
 
