@@ -132,7 +132,4 @@ function FriendPane(user) {
       .removeClass('highlight')
       .children('div').remove();
   }
-
-  var mainPane = new MainPane();
-  mainPane.enableGiftIdeasView(friend);
 }
