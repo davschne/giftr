@@ -98,8 +98,13 @@ function FriendPane(user) {
       $('#add').on('click', function() {
         var newFriend = new Friend($('.new-friend').val());
         user.addFriend(newFriend);
-        $list.append('<li class="friend">' + newFriend.name + '</li>');
+        var $parent = $list.append('<li class="friend">' + newFriend.name + '</li>');
+        var $current = $parent.children().last();
         removeAddField();
+        $current.addClass('highlight');
+        $current.append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
+
+        mainPane.enableGiftIdeasView(friends[$current.text()]);
       });
 
       // Cancel add
