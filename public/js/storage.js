@@ -1,5 +1,5 @@
 function Storage(uid) {
-  var dbRef = 'https://incandescent-inferno-6099.firebaseio.com/users/' + uid;
+  var dbRef = new Firebase('https://incandescent-inferno-6099.firebaseio.com');
   this.storeUser = function(user) {
     var name = user.name;
     var friends = user.getAllFriends();

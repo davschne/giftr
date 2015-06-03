@@ -1,5 +1,21 @@
+var fred = new Friend("Fred");
+var mom = new Friend("Mom");
+var dad = new Friend("Dad");
+
+var sweater = new Gift("sweater");
+var pony = new Gift("pony");
+var bbgun = new Gift("bbgun");
+
+var me = new User("Me");
+
+fred.sweater = sweater;
+mom.gifts.push(pony);
+dad.gifts.push(pony);
+dad.gifts.push(bbgun);
+
+
+
 var ref = new Firebase('https://incandescent-inferno-6099.firebaseio.com/');
-var usersRef = ref.child('users');
 var user;
 
 $('.startbutton').on('click', function() {
@@ -26,6 +42,7 @@ var createUser = function(error, userData) {
     }
   } else {
     console.log("Successfully created user account with uid:", userData.uid);
+    ref.child('users').set(userData.uid);
   }
 };
 
@@ -57,11 +74,14 @@ var authenticate = function(error, authData) {
       }
   } else {
     console.log("Authenticated successfully with payload:", authData);
+    console.log(authData.uid);
+    // var userRef = ref.
     var storage = new Storage(authData.uid);
+    storage.storeUser(me);
     ref.once('value', function(snapshot) {
-      user = storage.getUser;
-      console.log(storage.getUser);
+      user = storage.getUser(snapshot);
+      console.log(user);
     });
+
   }
 }
-
