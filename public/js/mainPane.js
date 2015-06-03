@@ -21,7 +21,8 @@ function MainPane() {
       $(this).hide();
 
       // Create form field, edit & delete buttons
-      $list.append('<input type="text" id="new-gift" placeholder="new gift idea" autofocus /><button id="add-gift">Add</button><button id="cancel-gift">Cancel</button>');
+      $list.append('<input type="text" id="new-gift" placeholder="new gift idea"><button id="add-gift">Add</button><button id="cancel-gift">Cancel</button>');
+      $('#new-gift').focus();
 
       // Confirm add
       $('#add-gift').on('click', function() {

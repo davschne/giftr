@@ -103,13 +103,18 @@ function FriendPane(user) {
   // Add new friend
   $('.friendsHeader button').on('click', function() {
     $(this).hide();
-    $list.append('<input type="text" id="new-friend" placeholder="Name" autofocus /><button id="add">Add</button><button id="cancel">Cancel</button>');
+    $list.append('<input type="text" id="new-friend" placeholder="Name"><button id="add">Add</button><button id="cancel">Cancel</button>');
+    $('#new-friend').focus();
+
+    // Confirm add
     $('#add').on('click', function() {
       var newFriend = new Friend($('#new-friend').val());
       user.addFriend(newFriend);
       $list.append('<li class="friend">' + newFriend.name + '</li>');
       removeAddField();
     });
+
+    // Cancel add
     $('#cancel').on('click', removeAddField);
     storage.storeUser(user);
   });
