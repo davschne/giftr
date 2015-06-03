@@ -138,21 +138,9 @@ border-bottom: 2px solid black;
   color: #323a45;
 }
 
-.friendsList {
-  text-align: center;
-}
-
 .friendsList, .mainList {
   list-style-type: none;
   font-family: Lato;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #323a45;
-  font-weight: bold;
-}
-
-.friendsList li:nth-of-type(even) {
-  background: #f3efe6;
 }
 
 .editdelete {
@@ -199,6 +187,7 @@ border-bottom: 2px solid black;
   font-size: 18pt;
   font-family: 'Poiret One';
 }
+
 
 
 
