@@ -32,9 +32,9 @@ a{
   z-index: -10;
 }
 .startbutton{
-  border: 3px solid black;
   position: absolute;
   margin: 150px 0px 0px 100px;
+  border: 3px solid black;
   width: 300px;
   height: 50px;
   background-color: #323a45;
@@ -60,6 +60,33 @@ a{
 .firstname{
   position: absolute;
   margin: 100px 0px 0px 100px;
+}
+
+.returningUser {
+  color: white;
+  font-family: 'Poiret One';
+  font-size: 22pt;
+  position: absolute;
+  left: 100px;
+  top: 350px;
+}
+
+.userLogin {
+  position: absolute;
+  left: 100px;
+  top: 400px;
+}
+
+.loginButton {
+  position: absolute;
+  left: 100px;
+  top: 450px;
+  border: 3px solid black;
+  width: 190px;
+  height: 50px;
+  background-color: #323a45;
+  font-size: 12pt;
+  color: white;
 }
 
 /*
