@@ -11,6 +11,7 @@ function MainPane() {
 
     function buildList() {
       // Create list of gifts from Friend object
+      $('.addNewGift').show();
       $list = $('<ul class="mainList"></ul>');
       for (var i = 0; i < friend.gifts.length; i++) {
         $list = $list.append('<li><span class="gift">' + friend.gifts[i].name + '</span></li>');
