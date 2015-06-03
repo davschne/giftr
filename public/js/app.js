@@ -52,6 +52,7 @@ var friend = new Friend("Hana");
 friend.gifts = [new Gift("pony"), new Gift("bulldozer")]
 user.addFriend(friend);
 user.addFriend(new Friend("David"));
+$('.main').hide();
 
 
 // Create the panes
@@ -59,12 +60,14 @@ var friendPane = new FriendPane(user);
 var mainPane = new MainPane();
 
 function login() {
-  var userName = $('.firstname').val();
-  user = storage.getUser(userName);
-  var friendPane = new FriendPane(user);
+  // var userName = $('.firstname').val();
+  // user = storage.getUser(userName);
+  // var friendPane = new FriendPane(user);
+  $('.landing').hide();
+  $('.main').show();
 }
 
-$('startbutton').on('click', login);
+$('.startbutton').on('click', login);
 
 function FriendPane(user) {
   $list = $('.friendsList');
