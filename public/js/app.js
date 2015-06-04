@@ -88,7 +88,7 @@ $(function() {
 
     // Add new friend
     function listenForAdd() {
-      $('.friendsHeader button').on('click', function() {
+      $('.friends-pane .add').on('click', function() {
         $(this).hide();
         deselectAll('.friendsList');
         $('.addNewGift').hide();
@@ -117,7 +117,7 @@ $(function() {
         $('.new-friend').remove();
         $('#add').remove();
         $('#cancel').remove();
-        $('.friendsHeader button').show();
+        $('.friends-pane .add').show();
       }
     }
 
@@ -154,7 +154,7 @@ $(function() {
           // Cancel edit
           $('#cancel-friend').on('click', function() {
             $('ul .edit-item').replaceWith('<li><span class="friend">' + cachedItem + '</span></li>')
-            $('.mainHeader button').show();
+            $('.main-pane .add').show();
           });
         });
 
@@ -230,7 +230,7 @@ $(function() {
             // Cancel edit
             $('#cancel-gift').on('click', function() {
               $('ul .edit-item').replaceWith('<li><span class="gift">' + cachedItem + '</span></li>')
-              $('.mainHeader button').show();
+              $('.main-pane .add').show();
             });
           });
 
@@ -249,7 +249,7 @@ $(function() {
 
       function listenForAdd() {
         // Add a new gift idea
-        $('.mainHeader button').on("click", function() {
+        $('.main-pane .add').on("click", function() {
           $(this).hide();
           deselectAll('.mainList');
           // Create form field, edit & delete buttons
@@ -270,7 +270,7 @@ $(function() {
 
             // Replace controls with list item
             $('.mainList .edit-item').replaceWith('<li><span class="gift">' + gift.name + '</span></li>');
-            $('.mainHeader button').show();
+            $('.main-pane .add').show();
           });
 
           // Cancel add
@@ -280,7 +280,7 @@ $(function() {
 
       function cancelAdd() {
         $('.mainList .edit-item').remove();
-        $('.mainHeader button').show();
+        $('.main-pane .add').show();
       }
     };
   }
@@ -368,7 +368,7 @@ $(function() {
   function enableLogoutListener() {
     $('.accountButtons').on('click', function() {
       ref.unauth();
-      $('#container').load('index.html #landing', function() {
+      $('body').load('index.html #landing', function() {
         start();
       });
     });
@@ -378,7 +378,7 @@ $(function() {
 
     // Replace <section>
 
-    $('#container').load('main.html', function() {
+    $('body').load('main.html', function() {
 
       // Create the panes
 

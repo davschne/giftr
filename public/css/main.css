@@ -10,7 +10,7 @@ body {
   background-color: #323a45;
 }
 
-.title {
+h1 {
   font-size: 80pt;
   font-family: 'Poiret One', cursive;
   color: #fa9d35;
@@ -164,7 +164,7 @@ commented out for possible later use. -Will
   min-width: 250px;
 }
 
-.friendsHeader, .mainHeader {
+.friends-pane header, .main-pane header {
   background: #f3efe6;
   border-bottom: 2px solid black;
 }
