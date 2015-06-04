@@ -72,6 +72,9 @@ a{
   position: absolute;
   left: 75px;
   top: 275px;
+  -webkit-text-security: disc;
+  -moz-text-security: disc;
+  text-security: disc;
 }
 
 .userLogin {
@@ -83,6 +86,9 @@ a{
   position: absolute;
   left: 75px;
   top: 550px;
+  -webkit-text-security: disc;
+  -moz-text-security: disc;
+  text-security: disc;
 }
 .loginButton {
   position: absolute;
