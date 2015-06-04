@@ -134,7 +134,7 @@ $(function() {
         mainPane.enableGiftIdeasView(friends[$(this).text()]);
       });
 
-      $('.friendsList li').on('mouseenter', function() {
+      $('.friendsList').on('mouseenter', 'li', function() {
         $(this).append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
 
         // Edit button event listener
@@ -143,6 +143,8 @@ $(function() {
           var cachedItem = $item.text();
           $item.replaceWith('<span class="edit-item"><input type="text" class="new-friend" value="' + cachedItem + '"><button id="add-friend">Save</button><button id="cancel-friend">Cancel</button></span>');
           $('.new-friend').focus();
+          
+          // Click anywhere on page to cancel edit
           $('.container').on('click', ':not(.friend-pane .highlight)', function() {
             cancelEdit(cachedItem);
           });
@@ -158,7 +160,7 @@ $(function() {
               $('.mainList').empty();
             }
             // Modify list
-            $('ul .edit-item').replaceWith('<li><span class="friend">' + $newFriend + '</span></li>');
+            $('ul .edit-item').replaceWith('<li><span class="friend">' + $newFriend + '</span></li>');        
           });
 
           // Cancel edit
@@ -174,10 +176,10 @@ $(function() {
           $(this).parents('li').remove();
           $('.mainList').empty();
         });
-      });
-      
-      $('.friendsList li').on('mouseleave', function() {
-        $(this).children('.editdelete').remove();
+        
+        $('.friendsList').one('mouseleave', 'li', function() {
+          $(this).children('.editdelete').remove();
+        });
       });
     }
   }
@@ -225,7 +227,7 @@ $(function() {
         });
 
 
-        $('.mainList li').on('mouseenter', function() {
+        $('.mainList').on('mouseenter', 'li', function() {
           $(this).append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
           // Edit button event listener
           $(this).find('.edit').on("click", function() {
@@ -269,10 +271,10 @@ $(function() {
             storage.storeUser(user);
             $(this).parents('li').remove();
           }); 
-        });
-        
-        $('.mainList li').on('mouseleave', function() {
-          $(this).children('.editdelete').remove();
+          
+          $('.mainList').on('mouseleave', 'li', function() {
+            $(this).children('.editdelete').remove();
+          });
         });
       }  
 
@@ -282,7 +284,7 @@ $(function() {
           $(this).hide();
           deselectAll('.mainList');
           // Create form field, edit & delete buttons
-          // $list.append('<span class="edit-item"><input type="text" id="new-gift" placeholder="new gift idea"><button id="add-gift">Add</button><button id="cancel-gift">Cancel</button></span>');
+          $list.append('<span class="edit-item"><input type="text" id="new-gift" placeholder="new gift idea"><button id="add-gift">Add</button><button id="cancel-gift">Cancel</button></span>');
           $('#new-gift').focus();
 
           // Confirm add
