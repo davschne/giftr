@@ -104,7 +104,7 @@ $(function() {
           var $current = $parent.children().last();
           removeAddField();
           $current.addClass('highlight');
-          $current.append('<div class="editdelete" id="editdelete-friend"><button class="edit" id="edit-friend"><img src="images/edit.png"></button><button class="delete" id="delete-friend"><img src="images/delete.png"></button></div>');
+          // $current.append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
 
           mainPane.enableGiftIdeasView(friends[$current.text()]);
         });
@@ -123,12 +123,19 @@ $(function() {
 
     // Select a friend
     function listenForSelect() {
+      function cancelEdit(cachedItem) {
+        $('ul .edit-item').replaceWith('<li><span class="friend">' + cachedItem + '</span></li>');
+        $('.main-pane .add').show();
+      }
+
       $list.on('click', 'li:not(.highlight)', function() {
         deselectAll('.friendsList');
         $(this).addClass('highlight');
-        $(this).append('<div class="editdelete" id="editdelete-friend"><button class="edit" id="edit-friend"><img src="images/edit.png"></button><button class="delete" id="delete-friend"><img src="images/delete.png"></button></div>');
-
         mainPane.enableGiftIdeasView(friends[$(this).text()]);
+      });
+
+      $('.friendsList li').on('mouseenter', function() {
+        $(this).append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
 
         // Edit button event listener
         $list.find('#edit-friend').on("click", function() {
@@ -136,6 +143,9 @@ $(function() {
           var cachedItem = $item.text();
           $item.replaceWith('<span class="edit-item"><input type="text" class="new-friend" value="' + cachedItem + '"><button id="add-friend">Save</button><button id="cancel-friend">Cancel</button></span>');
           $('.new-friend').focus();
+          $('.container').on('click', ':not(.friend-pane .highlight)', function() {
+            cancelEdit(cachedItem);
+          });
 
           // Confirm edit
           $('#add-friend').on('click', function() {
@@ -153,8 +163,7 @@ $(function() {
 
           // Cancel edit
           $('#cancel-friend').on('click', function() {
-            $('ul .edit-item').replaceWith('<li><span class="friend">' + cachedItem + '</span></li>')
-            $('.main-pane .add').show();
+            cancelEdit(cachedItem);
           });
         });
 
@@ -165,6 +174,10 @@ $(function() {
           $(this).parents('li').remove();
           $('.mainList').empty();
         });
+      });
+      
+      $('.friendsList li').on('mouseleave', function() {
+        $(this).children('.editdelete').remove();
       });
     }
   }
@@ -201,18 +214,28 @@ $(function() {
       }
 
       function listenForSelect() {
+        function cancelEdit(cachedItem) {
+          $('ul .edit-item').replaceWith('<li><span class="gift">' + cachedItem + '</span></li>');
+          $('.main-pane .add').show();
+        }
         // Select gift idea
         $list.on("click", "li:not(.highlight)", function() {
           deselectAll('.mainList');
-          $(this).addClass("highlight")
-                 .append('<div class="editdelete"><button class="edit" id="edit-gift"><img src="images/edit.png"></button><button class="delete" id="delete-gift"><img src="images/delete.png"></button></div>');
+          $(this).addClass("highlight");
+        });
 
+
+        $('.mainList li').on('mouseenter', function() {
+          $(this).append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
           // Edit button event listener
           $(this).find('#edit-gift').on("click", function() {
             $item = $(this).parents('li');
             var cachedItem = $item.text();
             $item.replaceWith('<span class="edit-item"><input type="text" id="new-gift" value="' + $item.children('.gift').text() + '"><button id="add-gift">Save</button><button id="cancel-gift">Cancel</button></span>');
             $('#new-gift').focus();
+            $('.container').on('click', ':not(.main-pane .highlight)', function() {
+              cancelEdit(cachedItem);
+            });
 
             // Confirm edit
             $('#add-gift').on('click', function() {
@@ -232,8 +255,7 @@ $(function() {
 
             // Cancel edit
             $('#cancel-gift').on('click', function() {
-              $('ul .edit-item').replaceWith('<li><span class="gift">' + cachedItem + '</span></li>')
-              $('.main-pane .add').show();
+              cancelEdit(cachedItem);
             });
           });
 
@@ -246,13 +268,13 @@ $(function() {
             }
             storage.storeUser(user);
             $(this).parents('li').remove();
-          });
-
-          $('.mainList li').on("blur", function() {
-            deselectAll('.mainList');
-          });
+          }); 
         });
-      }
+        
+        $('.mainList li').on('mouseleave', function() {
+          $(this).children('.editdelete').remove();
+        });
+      }  
 
       function listenForAdd() {
         // Add a new gift idea
@@ -260,7 +282,7 @@ $(function() {
           $(this).hide();
           deselectAll('.mainList');
           // Create form field, edit & delete buttons
-          $list.append('<span class="edit-item"><input type="text" id="new-gift" placeholder="new gift idea"><button id="add-gift">Add</button><button id="cancel-gift">Cancel</button></span>');
+          // $list.append('<span class="edit-item"><input type="text" id="new-gift" placeholder="new gift idea"><button id="add-gift">Add</button><button id="cancel-gift">Cancel</button></span>');
           $('#new-gift').focus();
 
           // Confirm add
@@ -336,7 +358,6 @@ $(function() {
         // Create the user object
 
         user = storage.getUser(snapshot);
-        console.log(user);
 
         // Start the application!
 
