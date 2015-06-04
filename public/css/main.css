@@ -103,7 +103,11 @@ li:hover {
   background-color: #fa9d35;
   font-size: 12pt;
 }
-
+.nameprompt, .firstname, .returningUser, .password, .userLogin,
+.loginpassword, .loginButton, .loginButton:hover, .startbutton,
+.startbutton:hover, .error{
+margin-left: 30px;
+}
 /*
 Last name and friend name are no longer in main.html
 commented out for possible later use. -Will
