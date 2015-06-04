@@ -1,4 +1,4 @@
-// $(function() {
+$(function() {
 
   function Friend(name) {
     this.name = name;
@@ -299,7 +299,6 @@
           console.log("Error creating user:", error);
       }
     } else {
-      ref.child('users').set(userData.uid);
       ref.child('users').child(userData.uid).set({name: email});
       authenticate(null, userData);
     }
@@ -323,9 +322,13 @@
     } else {
       storage = new Storage(authData.uid);
       ref.once('value', function(snapshot) {
-        // console.log(snapshot.val().users[authData.uid]);
+
+        // Create the user object
+
         user = storage.getUser(snapshot);
-        // console.log(user);
+
+        // Start the application!
+
         giftr(user);
       });
     }
@@ -379,4 +382,4 @@
   var friendPane;
   var mainPane;
   start();
-// });
+});
