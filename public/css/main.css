@@ -106,7 +106,7 @@ li:hover {
 .nameprompt, .firstname, .returningUser, .password, .userLogin,
 .loginpassword, .loginButton, .loginButton:hover, .startbutton,
 .startbutton:hover, .error{
-  margin-left: 30px;
+margin-left: 30px;
 }
 /*
 Last name and friend name are no longer in main.html
