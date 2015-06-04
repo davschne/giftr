@@ -63,7 +63,6 @@ $(function() {
     this.getUser = function(snapshot) {
       var data = snapshot.val().users[uid];
       var user = new User(data.name);
-      console.log(data.friends);
       user.populateFriends(data.friends);
       return user;
     };
@@ -326,6 +325,7 @@ $(function() {
         // Create the user object
 
         user = storage.getUser(snapshot);
+        console.log(user);
 
         // Start the application!
 
@@ -361,19 +361,37 @@ $(function() {
     });
   }
 
+  function enableLogoutListener() {
+    $('.accountButtons').on('click', function() {
+      ref.unauth();
+      $('#container').load('index.html #landing', function() {
+        start();
+      });
+
+      // $('.friendsList li').remove();
+      // $('.mainList li').remove();
+      // $('.main').hide();
+      // $('.landing').show();
+    });
+  }
+
   function start() {
-    $('.main').hide();
+    // $('.main').hide();
     enableLoginListeners();
   }
 
   function giftr(user) {
-    $('.landing').hide();
-    $('.main').show();
+    // $('.landing').hide();
+    // $('.main').show();
 
-    // Create the panes
+    // Replace <section>
+    $('#container').load('main.html', function() {
+      // Create the panes
 
-    friendPane = new FriendPane(user);
-    mainPane = new MainPane();
+      friendPane = new FriendPane(user);
+      mainPane = new MainPane();
+      enableLogoutListener();
+    });
   }
 
   var ref = new Firebase('https://incandescent-inferno-6099.firebaseio.com/');
