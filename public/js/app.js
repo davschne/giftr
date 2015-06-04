@@ -318,18 +318,20 @@ $(function() {
 
   function createUser(error, userData, email) {
     if (error) {
+      var message;
       switch (error.code) {
         case "EMAIL_TAKEN":
-          console.log("The new user account cannot be created because the email is already in use.");
-          $('.createemailerror').text('Sorry, this email is being used')
+          message = "The new user account cannot be created because the email is already in use.";
           break;
         case "INVALID_EMAIL":
-          console.log("The specified email is not a valid email.");
-          $('.createemailerror').text('Invalid email address');
+          message = "The specified email is not a valid email.";
           break;
         default:
-          console.log("Error creating user:", error);
+          message = "Error creating user";
       }
+
+      $('#create-error').text(message);
+
     } else {
       ref.child('users').child(userData.uid).set({name: email});
       authenticate(null, userData);
@@ -338,21 +340,23 @@ $(function() {
 
   function authenticate(error, authData) {
     if (error) {
+      var message;
       switch(error.code) {
-      case "INVALID_EMAIL":
-        console.log("The specified user account email is invalid.");
-        $('.loginemailerror').text("Invalid email");
-        break;
-      case "INVALID_PASSWORD":
-        console.log("The specified user account password is incorrect.");
-        $('.loginpassworderror').text("Invalid Password")
-        break;
-      case "INVALID_USER":
-        console.log("The specified user account does not exist.");
-        break;
-      default:
-        console.log("Error logging user in:", error);
-        }
+        case "INVALID_EMAIL":
+          message = "The specified user account email is invalid.";
+          break;
+        case "INVALID_PASSWORD":
+          message = "The specified user account password is incorrect.";
+          break;
+        case "INVALID_USER":
+          message = "The specified user account does not exist.";
+          break;
+        default:
+          message = "Error logging user in";
+      }
+
+      $('#login-error').text(message);
+
     } else {
       storage = new Storage(authData.uid);
       ref.once('value', function(snapshot) {
