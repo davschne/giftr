@@ -6,32 +6,41 @@
       #ffffff (white)
 */
 
-body{
+body {
   background-color: #323a45;
 }
-.title{
+
+.title {
   font-size: 80pt;
-  font-family: 'Poiret One';
+  font-family: 'Poiret One', cursive;
   color: #fa9d35;
   margin: 0px;
   padding-left: 50px;
   border-bottom: 1px solid #f3efe6;
 }
-a{
+
+a {
   text-decoration: none;
   color: #fa9d35;
 }
-.com{
+
+li:hover {
+  background-color: #f3efe6;
+}
+
+.com {
   font-size: 40pt;
-  font-family: 'Poiret One';
+  font-family: 'Poiret One', cursive;
   color: #f3efe6;
 }
-.bgphoto{
+
+.bgphoto {
   margin: 0px 0px 100px 60px;
   position: absolute;
   z-index: -10;
 }
-.startbutton{
+
+.startbutton {
   position: absolute;
   margin: 200px 0px 0px 75px;
   border: 3px solid black;
@@ -40,7 +49,8 @@ a{
   font-size: 12pt;
   color: white;
 }
-.startbutton:hover{
+
+.startbutton:hover {
   border: 3px solid black;
   position: absolute;
   margin: 200px 0px 0px 75px;
@@ -48,26 +58,29 @@ a{
   background-color: #fa9d35;
   font-size: 12pt;
 }
-.nameprompt{
+
+.nameprompt {
   color: white;
   position: absolute;
-  font-family: 'Poiret One';
+  font-family: 'Poiret One', cursive;
   font-size: 22pt;
   margin: 50px 0px 0px 75px;
 }
-.firstname{
+
+.firstname {
   position: absolute;
   margin: 100px 0px 0px 75px;
 }
 
 .returningUser {
   color: white;
-  font-family: 'Poiret One';
+  font-family: 'Poiret One', cursive;
   font-size: 22pt;
   position: absolute;
   left: 75px;
   top: 450px;
 }
+
 .password {
   position: absolute;
   left: 75px;
@@ -82,7 +95,8 @@ a{
   left: 75px;
   top: 500px;
 }
-.loginpassword{
+
+.loginpassword {
   position: absolute;
   left: 75px;
   top: 550px;
@@ -90,6 +104,7 @@ a{
   -moz-text-security: disc;
   text-security: disc;
 }
+
 .loginButton {
   position: absolute;
   left: 75px;
@@ -101,6 +116,7 @@ a{
   font-size: 12pt;
   color: white;
 }
+
 .loginButton:hover {
   position: absolute;
   left: 75px;
@@ -147,14 +163,17 @@ commented out for possible later use. -Will
   border-radius: 6px;
   min-width: 250px;
 }
-.friendsHeader, .mainHeader{
+
+.friendsHeader, .mainHeader {
   background: #f3efe6;
   border-bottom: 2px solid black;
 }
 
-.friendsHeaderText, .mainHeaderText {
-  font-family: 'Poiret One';
+h2 {
+  font-family: 'Poiret One', cursive;
   font-weight: bold;
+  letter-spacing: 0.1em;
+  text-shadow: 1px 1px 1px #323a45;
   color: #fa9d35;
   margin: auto;
   display: inline-block;
@@ -237,38 +256,35 @@ commented out for possible later use. -Will
   color: #323a45;
   border: 1px solid #323a45;
 }
-.welcome{
+
+.welcome {
   text-align: center;
   font-size: 18pt;
   font-family: 'Poiret One';
   margin: 0px 10px 0px 0px;
 }
-.new-friend{
+
+.new-friend {
   display: block;
 }
+
 .createemailerror, .createpassworderror, .loginemailerror, .loginpassworderror{
   color: red;
   position: absolute;
 }
-.createemailerror{
+
+.createemailerror {
   margin: 110px 0px 0px 275px;
 }
-.createpassworderror{
+
+.createpassworderror {
   margin: 150px 0px 0px 275px;
-
-
 }
-.loginemailerror{
+
+.loginemailerror {
   margin: 380px 0px 0px 275px;
-
-
 }
+
 .loginpassworderror{
   margin: 425px 0px 0px 275px;
-
 }
-
-
-
-
-
