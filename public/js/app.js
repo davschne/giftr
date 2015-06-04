@@ -334,7 +334,7 @@ $(function() {
     }
   }
 
-  function enableLoginListeners() {
+  function start() {
 
     // Log in as existing user
 
@@ -367,25 +367,15 @@ $(function() {
       $('#container').load('index.html #landing', function() {
         start();
       });
-
-      // $('.friendsList li').remove();
-      // $('.mainList li').remove();
-      // $('.main').hide();
-      // $('.landing').show();
     });
   }
 
-  function start() {
-    // $('.main').hide();
-    enableLoginListeners();
-  }
-
   function giftr(user) {
-    // $('.landing').hide();
-    // $('.main').show();
 
     // Replace <section>
+
     $('#container').load('main.html', function() {
+
       // Create the panes
 
       friendPane = new FriendPane(user);
