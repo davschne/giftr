@@ -44,6 +44,8 @@ function MainPane() {
                 }
               }
             }
+            storage.storeUser(user);
+
             // Modify list
             $('ul .edit-item').replaceWith('<li><span class="gift">' + $gift + '</span></li>');
           });
@@ -54,7 +56,6 @@ function MainPane() {
             $('.mainHeader button').show();
           });
 
-          // storage.storeUser(user);
 
           // TODO: modify entry in friend.gifts
         });
@@ -66,6 +67,7 @@ function MainPane() {
               friend.gifts.splice(i, 1);
             }
           }
+          storage.storeUser(user);
           $(this).parents('li').remove();
         });
       });
@@ -90,6 +92,7 @@ function MainPane() {
 
           // Save gift to friend object
           friend.gifts.push(gift);
+          storage.storeUser(user);
 
           // Replace controls with list item
           $('.mainList .edit-item').replaceWith('<li><span class="gift">' + gift.name + '</span></li>');
@@ -100,7 +103,6 @@ function MainPane() {
         $('#cancel-gift').on('click', cancelAdd);
 
         // COMMIT TO STORAGE?
-        // storage.storeUser(user);
       });
     }
 
