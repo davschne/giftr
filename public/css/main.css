@@ -168,6 +168,7 @@ commented out for possible later use. -Will
   border: 0px;
   color: #323a45;
   float: right;
+  padding-right: 40px;
 }
 
 /*#add-gift {
