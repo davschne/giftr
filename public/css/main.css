@@ -41,8 +41,6 @@ li:hover {
 }
 
 .startbutton {
-  position: absolute;
-  margin: 200px 0px 0px 75px;
   border: 3px solid black;
   height: 50px;
   background-color: #323a45;
@@ -52,8 +50,6 @@ li:hover {
 
 .startbutton:hover {
   border: 3px solid black;
-  position: absolute;
-  margin: 200px 0px 0px 75px;
   height: 50px;
   background-color: #fa9d35;
   font-size: 12pt;
@@ -61,54 +57,37 @@ li:hover {
 
 .nameprompt {
   color: white;
-  position: absolute;
   font-family: 'Poiret One', cursive;
   font-size: 22pt;
-  margin: 50px 0px 0px 75px;
 }
 
 .firstname {
-  position: absolute;
-  margin: 100px 0px 0px 75px;
 }
 
 .returningUser {
   color: white;
   font-family: 'Poiret One', cursive;
   font-size: 22pt;
-  position: absolute;
-  left: 75px;
-  top: 450px;
 }
 
 .password {
-  position: absolute;
-  left: 75px;
-  top: 275px;
   -webkit-text-security: disc;
   -moz-text-security: disc;
   text-security: disc;
 }
 
 .userLogin {
-  position: absolute;
   left: 75px;
   top: 500px;
 }
 
 .loginpassword {
-  position: absolute;
-  left: 75px;
-  top: 550px;
   -webkit-text-security: disc;
   -moz-text-security: disc;
   text-security: disc;
 }
 
 .loginButton {
-  position: absolute;
-  left: 75px;
-  top: 600px;
   border: 3px solid black;
   width: 190px;
   height: 50px;
@@ -118,16 +97,17 @@ li:hover {
 }
 
 .loginButton:hover {
-  position: absolute;
-  left: 75px;
-  top: 600px;
   border: 3px solid black;
   width: 190px;
   height: 50px;
   background-color: #fa9d35;
   font-size: 12pt;
 }
-
+.nameprompt, .firstname, .returningUser, .password, .userLogin,
+.loginpassword, .loginButton, .loginButton:hover, .startbutton,
+.startbutton:hover, .error{
+margin-left: 30px;
+}
 /*
 Last name and friend name are no longer in main.html
 commented out for possible later use. -Will
@@ -264,23 +244,7 @@ h2 {
   display: block;
 }
 
-.createemailerror, .createpassworderror, .loginemailerror, .loginpassworderror{
+.error{
   color: red;
-  position: absolute;
 }
 
-.createemailerror {
-  margin: 110px 0px 0px 275px;
-}
-
-.createpassworderror {
-  margin: 150px 0px 0px 275px;
-}
-
-.loginemailerror {
-  margin: 380px 0px 0px 275px;
-}
-
-.loginpassworderror{
-  margin: 425px 0px 0px 275px;
-}
