@@ -188,7 +188,7 @@ $(function() {
 
       function buildList() {
         // Create list of gifts from Friend object
-        $('.addNewGift').show();
+        $('.main-pane .add').show();
         $list = $('<ul class="mainList"></ul>');
         if (!friend.gifts) {
           friend.gifts = [];

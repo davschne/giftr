@@ -24,7 +24,7 @@ a {
   color: #fa9d35;
 }
 
-li:hover {
+li:hover:not(.highlight) {
   background-color: #f3efe6;
 }
 
@@ -160,7 +160,7 @@ h2 {
   padding-left: 10px;
 }
 
-.add, .addNewGift {
+.add {
   font-size: 50px;
   display: inline-block;
   width: 50px;
