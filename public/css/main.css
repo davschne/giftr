@@ -152,10 +152,6 @@ commented out for possible later use. -Will
 }
 */
 
-.friends-pane {
-  margin-left: 0px;
-}
-
 .friends-pane, .main-pane {
   background: #ffffff;
   margin-top: 20px;
