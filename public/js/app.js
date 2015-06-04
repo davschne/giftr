@@ -63,7 +63,6 @@ $(function() {
     this.getUser = function(snapshot) {
       var data = snapshot.val().users[uid];
       var user = new User(data.name);
-      console.log(data.friends);
       user.populateFriends(data.friends);
       return user;
     };
@@ -296,9 +295,11 @@ $(function() {
       switch (error.code) {
         case "EMAIL_TAKEN":
           console.log("The new user account cannot be created because the email is already in use.");
+          $('.createemailerror').text('Sorry, this email is being used')
           break;
         case "INVALID_EMAIL":
           console.log("The specified email is not a valid email.");
+          $('.createemailerror').text('Invalid email address');
           break;
         default:
           console.log("Error creating user:", error);
@@ -314,9 +315,11 @@ $(function() {
       switch(error.code) {
       case "INVALID_EMAIL":
         console.log("The specified user account email is invalid.");
+        $('.loginemailerror').text("Invalid email");
         break;
       case "INVALID_PASSWORD":
         console.log("The specified user account password is incorrect.");
+        $('.loginpassworderror').text("Invalid Password")
         break;
       case "INVALID_USER":
         console.log("The specified user account does not exist.");
@@ -331,6 +334,7 @@ $(function() {
         // Create the user object
 
         user = storage.getUser(snapshot);
+        console.log(user);
 
         // Start the application!
 
@@ -339,13 +343,13 @@ $(function() {
     }
   }
 
-  function enableLoginListeners() {
+  function start() {
 
     // Log in as existing user
 
     $('.loginButton').on('click', function() {
       var userLogin = $('.userLogin').val();
-      var password = "password";
+      var password = $('#login_password').val();
       ref.authWithPassword({
         'email': userLogin,
         'password': password
@@ -356,7 +360,7 @@ $(function() {
 
     $('.startbutton').on('click', function() {
       var email = $('.firstname').val();
-      var password = "password";
+      var password = $('#create_password').val();
       ref.createUser({
         'email': email,
         'password': password
@@ -366,19 +370,27 @@ $(function() {
     });
   }
 
-  function start() {
-    $('.main').hide();
-    enableLoginListeners();
+  function enableLogoutListener() {
+    $('.accountButtons').on('click', function() {
+      ref.unauth();
+      $('#container').load('index.html #landing', function() {
+        start();
+      });
+    });
   }
 
   function giftr(user) {
-    $('.landing').hide();
-    $('.main').show();
 
-    // Create the panes
+    // Replace <section>
 
-    friendPane = new FriendPane(user);
-    mainPane = new MainPane();
+    $('#container').load('main.html', function() {
+
+      // Create the panes
+
+      friendPane = new FriendPane(user);
+      mainPane = new MainPane();
+      enableLogoutListener();
+    });
   }
 
   var ref = new Firebase('https://incandescent-inferno-6099.firebaseio.com/');

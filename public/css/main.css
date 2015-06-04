@@ -246,6 +246,27 @@ commented out for possible later use. -Will
 .new-friend{
   display: block;
 }
+.createemailerror, .createpassworderror, .loginemailerror, .loginpassworderror{
+  color: red;
+  position: absolute;
+}
+.createemailerror{
+  margin: 110px 0px 0px 275px;
+}
+.createpassworderror{
+  margin: 150px 0px 0px 275px;
+
+
+}
+.loginemailerror{
+  margin: 380px 0px 0px 275px;
+
+
+}
+.loginpassworderror{
+  margin: 425px 0px 0px 275px;
+
+}
 
 
 
