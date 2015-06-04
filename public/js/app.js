@@ -191,9 +191,7 @@ $(function() {
         $('.addNewGift').show();
         $list = $('<ul class="mainList"></ul>');
         if (!friend.gifts) {
-          console.log("gifts length < 0");
           friend.gifts = [];
-          friend.gifts.push(new Gift(""));
         }
         for (var i = 0; i < friend.gifts.length; i++) {
           $list = $list.append('<li><span class="gift">' + friend.gifts[i].name + '</span></li>');
