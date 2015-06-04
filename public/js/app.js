@@ -190,6 +190,9 @@ $(function() {
         // Create list of gifts from Friend object
         $('.addNewGift').show();
         $list = $('<ul class="mainList"></ul>');
+        if (!friend.gifts) {
+          friend.gifts = [];
+        }
         for (var i = 0; i < friend.gifts.length; i++) {
           $list = $list.append('<li><span class="gift">' + friend.gifts[i].name + '</span></li>');
         }
