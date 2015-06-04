@@ -287,6 +287,7 @@ $(function() {
   }
 
   function createUser(error, userData, email) {
+    var password;
     if (error) {
       switch (error.code) {
         case "EMAIL_TAKEN":
@@ -300,7 +301,8 @@ $(function() {
         default:
           console.log("Error creating user:", error);
       }
-    } else {
+    }
+    else {
       ref.child('users').child(userData.uid).set({name: email});
       authenticate(null, userData);
     }
