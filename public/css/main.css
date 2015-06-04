@@ -132,9 +132,9 @@ commented out for possible later use. -Will
 }
 */
 
-.friends-pane {
+/*.friends-pane {
   margin-left: 0px;
-}
+}*/
 
 .friends-pane, .main-pane {
   background: #ffffff;
@@ -193,7 +193,9 @@ h2 {
 .friendsList, .mainList {
   list-style-type: none;
   font-family: Lato;
+  font-size: 30px;
   height: 500px;
+  overflow: scroll;
   margin: 10px 0px 0px 10px;
 }
 
@@ -238,10 +240,14 @@ h2 {
 }
 
 .welcome {
-  text-align: center;
-  font-size: 18pt;
-  font-family: 'Poiret One';
+  text-align: left;
+  font-size: 20px;
+  font-family: 'Lato';
   margin: 0px 10px 0px 0px;
+}
+
+.friend, .gift {
+  font-size: 20px
 }
 
 .new-friend {
