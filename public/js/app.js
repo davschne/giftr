@@ -93,18 +93,18 @@ $(function() {
         deselectAll('.friendsList');
         $('.addNewGift').hide();
         $('.mainList').empty();
-        $list.append('<input type="text" class="new-friend" placeholder="Name"><button id="add">Add</button><button id="cancel">Cancel</button>');
+        $list.append('<input type="text" class="new-friend" placeholder="Name"><button id="add-friend">Add</button><button id="cancel">Cancel</button>');
         $('.new-friend').focus();
 
         // Confirm add
-        $('#add').on('click', function() {
+        $('#add-friend').on('click', function() {
           var newFriend = new Friend($('.new-friend').val());
           user.addFriend(newFriend);
           var $parent = $list.append('<li class="friend">' + newFriend.name + '</li>');
           var $current = $parent.children().last();
           removeAddField();
           $current.addClass('highlight');
-          $current.append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
+          $current.append('<div class="editdelete" id="editdelete-friend"><button class="edit" id="edit-friend"><img src="images/edit.png"></button><button class="delete" id="delete-friend"><img src="images/delete.png"></button></div>');
 
           mainPane.enableGiftIdeasView(friends[$current.text()]);
         });
@@ -115,7 +115,7 @@ $(function() {
 
       function removeAddField() {
         $('.new-friend').remove();
-        $('#add').remove();
+        $('#add-friend').remove();
         $('#cancel').remove();
         $('.friendsHeader button').show();
       }
@@ -126,12 +126,12 @@ $(function() {
       $list.on('click', 'li:not(.highlight)', function() {
         deselectAll('.friendsList');
         $(this).addClass('highlight');
-        $(this).append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
+        $(this).append('<div class="editdelete" id="editdelete-friend"><button class="edit" id="edit-friend"><img src="images/edit.png"></button><button class="delete" id="delete-friend"><img src="images/delete.png"></button></div>');
 
         mainPane.enableGiftIdeasView(friends[$(this).text()]);
 
         // Edit button event listener
-        $list.find('.edit').on("click", function() {
+        $list.find('#edit-friend').on("click", function() {
           $item = $(this).parents('li');
           var cachedItem = $item.text();
           $item.replaceWith('<span class="edit-item"><input type="text" class="new-friend" value="' + cachedItem + '"><button id="add-friend">Save</button><button id="cancel-friend">Cancel</button></span>');
@@ -159,7 +159,7 @@ $(function() {
         });
 
         // Delete button event listener
-        $list.find('.delete').on("click", function(e) {
+        $list.find('#delete-friend').on("click", function(e) {
           e.preventDefault();
           user.removeFriend($(this).parents('li').text());
           $(this).parents('li').remove();
@@ -172,7 +172,7 @@ $(function() {
   function deselectAll(parentElement) {
     $(parentElement + ' .highlight')
       .removeClass('highlight')
-      .children('.editdelete').remove();
+      .children('#editdelete-friend').remove();
   }
 
   function MainPane() {
@@ -202,10 +202,10 @@ $(function() {
         $list.on("click", "li:not(.highlight)", function() {
           deselectAll('.mainList');
           $(this).addClass("highlight")
-                 .append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
+                 .append('<div class="editdelete"><button class="edit" id="edit-gift"><img src="images/edit.png"></button><button class="delete" id="delete-gift"><img src="images/delete.png"></button></div>');
 
           // Edit button event listener
-          $(this).find('.edit').on("click", function() {
+          $(this).find('#edit-gift').on("click", function() {
             $item = $(this).parents('li');
             var cachedItem = $item.text();
             $item.replaceWith('<span class="edit-item"><input type="text" id="new-gift" value="' + $item.children('.gift').text() + '"><button id="add-gift">Save</button><button id="cancel-gift">Cancel</button></span>');
@@ -235,7 +235,7 @@ $(function() {
           });
 
           // Delete button event listener
-          $list.find('.delete').on("click", function() {
+          $list.find('#delete-gift').on("click", function() {
             for (var i = 0; i < friend.gifts.length; i++) {
               if (friend.gifts[i].name == $(this).parents('li').text()) {
                 friend.gifts.splice(i, 1);
