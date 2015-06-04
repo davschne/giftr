@@ -1,22 +1,22 @@
 function Storage(uid) {
-  var dbRef = new Firebase('https://incandescent-inferno-6099.firebaseio.com');
+
+  var dbRef = new Firebase('https://incandescent-inferno-6099.firebaseio.com/users/' + uid);
+
   this.storeUser = function(user) {
     var name = user.name;
     var friends = user.getAllFriends();
-    dbRef.child("friends").set(friends);
-    dbRef.child("name").set(name);
+    // console.log(friends);
+    dbRef.set({friends: friends});
+    // dbRef.child("name").set(name);
   };
+
   this.getUser = function(snapshot) {
-    var data = snapshot.val();
+    var data = snapshot.val().users[uid];
+    // console.log(uid);
+    // console.log(data);
     var user = new User(data.name);
+    console.log(data.friends);
     user.populateFriends(data.friends);
     return user;
   };
 };
-
-// Restoring a user will look a bit like this:
-//
-// var name = $('input').value;
-// var user = storage.restoreUser(name);
-// friendPane.showPeople();
-// etc.
