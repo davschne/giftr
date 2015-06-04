@@ -247,6 +247,10 @@ $(function() {
             storage.storeUser(user);
             $(this).parents('li').remove();
           });
+
+          $('.mainList li').on("blur", function() {
+            deselectAll('.mainList');
+          });
         });
       }
 
