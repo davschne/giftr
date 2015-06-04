@@ -247,6 +247,16 @@ function enableLoginListeners() {
   });
 }
 
+function enableLogoutLisenter() {
+  $('.accountButtons').on('click', function() {
+    ref.unauth();
+    $('.friendsList li').remove();
+    $('.mainList li').remove();
+    $('.main').hide();
+    $('.landing').show();
+  });
+}
+
 function start() {
   $('.main').hide();
   enableLoginListeners();
@@ -258,6 +268,7 @@ function giftr(user) {
   // Create the panes
   friendPane = new FriendPane(user);
   mainPane = new MainPane();
+  enableLogoutLisenter();
 }
 
 var ref = new Firebase('https://incandescent-inferno-6099.firebaseio.com/');
