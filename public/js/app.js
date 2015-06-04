@@ -290,9 +290,11 @@ $(function() {
       switch (error.code) {
         case "EMAIL_TAKEN":
           console.log("The new user account cannot be created because the email is already in use.");
+          $('.createemailerror').text('Sorry, this email is being used')
           break;
         case "INVALID_EMAIL":
           console.log("The specified email is not a valid email.");
+          $('.createemailerror').text('Invalid email address');
           break;
         default:
           console.log("Error creating user:", error);
@@ -308,9 +310,11 @@ $(function() {
       switch(error.code) {
       case "INVALID_EMAIL":
         console.log("The specified user account email is invalid.");
+        $('.loginemailerror').text("Invalid email");
         break;
       case "INVALID_PASSWORD":
         console.log("The specified user account password is incorrect.");
+        $('.loginpassworderror').text("Invalid Password")
         break;
       case "INVALID_USER":
         console.log("The specified user account does not exist.");
@@ -340,7 +344,7 @@ $(function() {
 
     $('.loginButton').on('click', function() {
       var userLogin = $('.userLogin').val();
-      var password = "password";
+      var password = $('#login_password').val();
       ref.authWithPassword({
         'email': userLogin,
         'password': password
@@ -351,7 +355,7 @@ $(function() {
 
     $('.startbutton').on('click', function() {
       var email = $('.firstname').val();
-      var password = "password";
+      var password = $('#create_password').val();
       ref.createUser({
         'email': email,
         'password': password
