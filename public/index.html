@@ -20,17 +20,24 @@
       <h1>Giftr<span class="com">.com</span></h1>
       <img class="bgphoto twelve columns" src="images/girl-opening-box.jpg">
       <p class="nameprompt">Welcome to Giftr!</p>
+
       <input class="firstname" type="text" name="name" placeholder="Enter email address"/>
-      <p class="createemailerror"></p>
       <input class="password" id="create_password" type="password" name="name" placeholder="Enter a new password"/>
-      <p class="createpassworderror"></p>
+      <br>
+      <span class="error" id="create-error"></span>
+
+      <br>
+
       <button class="startbutton">Start Giving</button>
       <p class="returningUser">Already a user?</p>
-      <input class="userLogin" type="text" placeholder="Enter email address" />
-      <p class="loginemailerror"></p>
-      <input class="loginpassword" id="login_password" type="password" placeholder="Enter password" />
-      <p class="loginpassworderror"></p>
 
+      <input class="userLogin" type="text" placeholder="Enter email address" />
+      <input class="loginpassword" id="login_password" type="password" placeholder="Enter password" />
+      <br>
+      <span class="error" id="login-error"></span>
+
+
+      <br>
       <button class="loginButton">Log in</button>
     </section>
   </body>
