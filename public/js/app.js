@@ -215,6 +215,40 @@ $(function() {
         $('.main-pane ul').replaceWith($list);
       }
 
+      function listenForAdd() {
+        // Add a new gift idea
+        $('.main-pane .add').on("click", function() {
+          console.log(286);
+          $(this).hide();
+          console.log($list);
+          deselectAll('.mainList');
+          // Create form field, edit & delete buttons
+          $('.mainList').append('<span class="edit-item"><input type="text" id="new-gift" placeholder="new gift idea"><button id="add-gift">Add</button><button id="cancel-gift">Cancel</button></span>');
+          console.log(292);
+          $('#new-gift').focus();
+
+          // Confirm add
+          $('#add-gift').on('click', function() {
+            var entry = $('#new-gift').val();
+            if (!entry) {
+              cancelAdd();
+            }
+            var gift = new Gift($('#new-gift').val());
+
+            // Save gift to friend object
+            friend.gifts.push(gift);
+            storage.storeUser(user);
+
+            // Replace controls with list item
+            $('.mainList .edit-item').replaceWith('<li><span class="gift">' + gift.name + '</span></li>');
+            $('.main-pane .add').show();
+          });
+
+          // Cancel add
+          $('#cancel-gift').on('click', cancelAdd);
+        });
+      }
+
       function listenForSelect() {
         function cancelEdit(cachedItem) {
           $('ul .edit-item').replaceWith('<li><span class="gift">' + cachedItem + '</span></li>');
@@ -232,9 +266,11 @@ $(function() {
           // Edit button event listener
           $(this).find('.edit').on("click", function() {
             $item = $(this).parents('li');
+            // Store item in case of cancel
             var cachedItem = $item.text();
             $item.replaceWith('<span class="edit-item"><input type="text" id="new-gift" value="' + $item.children('.gift').text() + '"><button id="add-gift">Save</button><button id="cancel-gift">Cancel</button></span>');
             $('#new-gift').focus();
+            // Event listener: remove edit controls if user clicks anywhere else
             $('.container').on('click', ':not(.main-pane .highlight)', function() {
               cancelEdit(cachedItem);
             });
@@ -277,37 +313,6 @@ $(function() {
           });
         });
       }  
-
-      function listenForAdd() {
-        // Add a new gift idea
-        $('.main-pane .add').on("click", function() {
-          $(this).hide();
-          deselectAll('.mainList');
-          // Create form field, edit & delete buttons
-          $list.append('<span class="edit-item"><input type="text" id="new-gift" placeholder="new gift idea"><button id="add-gift">Add</button><button id="cancel-gift">Cancel</button></span>');
-          $('#new-gift').focus();
-
-          // Confirm add
-          $('#add-gift').on('click', function() {
-            var entry = $('#new-gift').val();
-            if (!entry) {
-              cancelAdd();
-            }
-            var gift = new Gift($('#new-gift').val());
-
-            // Save gift to friend object
-            friend.gifts.push(gift);
-            storage.storeUser(user);
-
-            // Replace controls with list item
-            $('.mainList .edit-item').replaceWith('<li><span class="gift">' + gift.name + '</span></li>');
-            $('.main-pane .add').show();
-          });
-
-          // Cancel add
-          $('#cancel-gift').on('click', cancelAdd);
-        });
-      }
 
       function cancelAdd() {
         $('.mainList .edit-item').remove();
