@@ -316,65 +316,65 @@ $(function() {
     };
   }
 
-  function createUser(error, userData, email) {
-    if (error) {
-      var message;
-      switch (error.code) {
-        case "EMAIL_TAKEN":
-          message = "The new user account cannot be created because the email is already in use.";
-          break;
-        case "INVALID_EMAIL":
-          message = "The specified email is not a valid email.";
-          break;
-        default:
-          message = "Error creating user";
-      }
-
-      $('#create-error').text(message);
-
-    } else {
-      ref.child('users').child(userData.uid).set({name: email});
-      authenticate(null, userData);
-    }
-  };
-
-  function authenticate(error, authData) {
-    if (error) {
-      var message;
-      switch(error.code) {
-        case "INVALID_EMAIL":
-          message = "The specified user account email is invalid.";
-          break;
-        case "INVALID_PASSWORD":
-          message = "The specified user account password is incorrect.";
-          break;
-        case "INVALID_USER":
-          message = "The specified user account does not exist.";
-          break;
-        default:
-          message = "Error logging user in";
-      }
-
-      $('#login-error').text(message);
-
-    } else {
-      storage = new Storage(authData.uid);
-      ref.once('value', function(snapshot) {
-
-        // Create the user object
-
-        user = storage.getUser(snapshot);
-
-        // Start the application!
-
-        giftr(user);
-      });
-    }
-  }
-
   function start() {
 
-    // Log in as existing user
+    function createUser(error, userData, email) {
+      if (error) {
+        var message;
+        switch (error.code) {
+          case "EMAIL_TAKEN":
+            message = "The new user account cannot be created because the email is already in use.";
+            break;
+          case "INVALID_EMAIL":
+            message = "The specified email is not a valid email.";
+            break;
+          default:
+            message = "Error creating user";
+        }
+
+        $('#create-error').text(message);
+
+      } else {
+        ref.child('users').child(userData.uid).set({name: email});
+        authenticate(null, userData);
+      }
+    };
+
+    function authenticate(error, authData) {
+      if (error) {
+        var message;
+        switch(error.code) {
+          case "INVALID_EMAIL":
+            message = "The specified user account email is invalid.";
+            break;
+          case "INVALID_PASSWORD":
+            message = "The specified user account password is incorrect.";
+            break;
+          case "INVALID_USER":
+            message = "The specified user account does not exist.";
+            break;
+          default:
+            message = "Error logging user in";
+        }
+
+        $('#login-error').text(message);
+
+      } else {
+        storage = new Storage(authData.uid);
+        ref.once('value', function(snapshot) {
+
+          // Create the user object
+
+          user = storage.getUser(snapshot);
+
+          // Start the application!
+
+          giftr(user);
+        });
+      }
+    }
+
+    // Listener for logging in as existing user
 
     $('#existing-user-button').on('click', function(e) {
       e.preventDefault();
@@ -386,7 +386,7 @@ $(function() {
       }, authenticate);
     });
 
-    // Create new account
+    // Listener for creating new account
 
     $('#create-user-button').on('click', function(e) {
       e.preventDefault();
@@ -401,16 +401,16 @@ $(function() {
     });
   }
 
-  function enableLogoutListener() {
-    $('#log-out').on('click', function() {
-      ref.unauth();
-      $('body').load('index.html #landing', function() {
-        start();
-      });
-    });
-  }
-
   function giftr(user) {
+
+    function enableLogoutListener() {
+      $('#log-out').on('click', function() {
+        ref.unauth();
+        $('body').load('index.html #landing', function() {
+          start();
+        });
+      });
+    }
 
     // Replace <section>
 
