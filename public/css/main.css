@@ -1,11 +1,3 @@
-/*  Giftr.com
-    Color Scheme:
-      #fa9d35 (orange)
-      #323a45 (blue/green)
-      #f3efe6 (off-white)
-      #ffffff (white)
-*/
-
 body {
   background-color: #323a45;
 }
@@ -15,7 +7,7 @@ h1 {
   font-family: 'Poiret One', cursive;
   color: #fa9d35;
   margin: 0px;
-  padding-left: 50px;
+  padding-left: 30px;
   border-bottom: 1px solid #f3efe6;
 }
 
@@ -61,9 +53,6 @@ li:hover {
   font-size: 22pt;
 }
 
-.firstname {
-}
-
 .returningUser {
   color: white;
   font-family: 'Poiret One', cursive;
@@ -87,54 +76,9 @@ li:hover {
   text-security: disc;
 }
 
-.loginButton {
-  border: 3px solid black;
-  width: 190px;
-  height: 50px;
-  background-color: #323a45;
-  font-size: 12pt;
-  color: white;
+form {
+  margin-left: 30px;
 }
-
-.loginButton:hover {
-  border: 3px solid black;
-  width: 190px;
-  height: 50px;
-  background-color: #fa9d35;
-  font-size: 12pt;
-}
-.nameprompt, .firstname, .returningUser, .password, .userLogin,
-.loginpassword, .loginButton, .loginButton:hover, .startbutton,
-.startbutton:hover, .error{
-margin-left: 30px;
-}
-/*
-Last name and friend name are no longer in main.html
-commented out for possible later use. -Will
-.lastname{
-  position: absolute;
-  margin: 100px 0px 0px 300px;
-}
-.friendnameprompt{
-  color: white;
-  position: absolute;
-  font-family: 'Poiret One';
-  font-size: 22pt;
-  margin: 150px 0px 0px 100px;
-}
-.friendfirstname{
-  position: absolute;
-  margin: 200px 0px 0px 100px;
-}
-.friendlastname{
-  position: absolute;
-  margin: 200px 0px 0px 300px;
-}
-*/
-
-/*.friends-pane {
-  margin-left: 0px;
-}*/
 
 .friends-pane, .main-pane {
   background: #ffffff;
@@ -170,16 +114,6 @@ h2 {
   padding-right: 40px;
 }
 
-/*#add-gift {
-  font-size: 50px;
-  display: inline-block;
-  width: 50px;
-  border: 0px;
-  color: #323a45;
-  margin-left: 290px;
-}*/
-
-
 .add:hover {
   color: #fa9d35;
   float: right;
@@ -193,7 +127,6 @@ h2 {
 .friendsList, .mainList {
   list-style-type: none;
   font-family: Lato;
-  font-size: 30px;
   height: 500px;
   overflow: scroll;
   margin: 10px 0px 0px 10px;
@@ -224,19 +157,21 @@ h2 {
   display: inline-block;
 }
 
-.accountButtons {
-  background: #f3efe6;
-  color: #323a45;
+.login-button, .account-button {
+  border: 3px solid black;
+  width: 190px;
+  height: 50px;
+  background-color: #646464;
+  font-size: 12pt;
+  color: white;
 }
 
-.accountButtons:hover {
-  color: #fa9d35;
-  border: 1px solid #fa9d35;
+.login-button:hover, .account-button:hover {
+  background-color: #fa9d35;
 }
 
-.accountButtons:active {
-  color: #323a45;
-  border: 1px solid #323a45;
+.login-button {
+  background-color: #323a45;
 }
 
 .welcome {
