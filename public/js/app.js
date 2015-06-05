@@ -83,7 +83,7 @@ $(function() {
           $list.append('<li class="friend">' + friends[name].name + '</li>');
         }
       }
-      $('.addNewGift').hide();
+      $('.main-pane .add').hide();
     }
 
     // Add new friend
@@ -91,7 +91,7 @@ $(function() {
       $('.friends-pane .add').on('click', function() {
         $(this).hide();
         deselectAll('.friendsList');
-        $('.addNewGift').hide();
+        $('.main-pane .add').hide();
         $('.mainList').empty();
         $list.append('<input type="text" class="new-friend" placeholder="Name"><button id="add-friend">Add</button><button id="cancel">Cancel</button>');
         $('.new-friend').focus();
@@ -104,7 +104,7 @@ $(function() {
           var $current = $parent.children().last();
           removeAddField();
           $current.addClass('highlight');
-          
+
           mainPane.enableGiftIdeasView(friends[$current.text()]);
         });
 
@@ -159,7 +159,7 @@ $(function() {
               $('.mainList').empty();
             }
             // Modify list
-            $('ul .edit-item').replaceWith('<li><span class="friend">' + $newFriend + '</span></li>');        
+            $('ul .edit-item').replaceWith('<li><span class="friend">' + $newFriend + '</span></li>');
           });
 
           // Cancel edit
@@ -175,7 +175,7 @@ $(function() {
           $(this).parents('li').remove();
           $('.mainList').empty();
         });
-        
+
         $('.friendsList').one('mouseleave', 'li', function() {
           $(this).children('.editdelete').remove();
         });
@@ -301,13 +301,13 @@ $(function() {
             }
             storage.storeUser(user);
             $(this).parents('li').remove();
-          }); 
-          
+          });
+
           $('.mainList').on('mouseleave', 'li', function() {
             $(this).children('.editdelete').remove();
           });
         });
-      }  
+      }
 
       function cancelAdd() {
         $('.mainList .edit-item').remove();
