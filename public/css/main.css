@@ -142,7 +142,7 @@ h2 {
   padding: 0px 25px 5px 5px;
 }
 
-.edit {
+.edit-friend, .edit-gift {
   border: 0px;
   width: 15px;
   padding: 0px 20px 0px 5px;
