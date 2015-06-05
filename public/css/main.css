@@ -10,6 +10,13 @@ h1 {
   padding-left: 30px;
   border-bottom: 1px solid #f3efe6;
 }
+.subtitle{
+  font-size: 20pt;
+  font-family: cursive;
+  color: #fa9d35;
+  position: absolute;
+  margin: 5px 0px 0px 25px;
+}
 
 a {
   text-decoration: none;
@@ -51,12 +58,14 @@ li:hover {
   color: white;
   font-family: 'Poiret One', cursive;
   font-size: 22pt;
+  margin-top: 60px;
 }
 
 .returningUser {
   color: white;
   font-family: 'Poiret One', cursive;
   font-size: 22pt;
+  margin-top: 40px;
 }
 
 .password {
@@ -104,7 +113,7 @@ h2 {
   padding-left: 10px;
 }
 
-.add, .addNewGift {
+.add {
   font-size: 50px;
   display: inline-block;
   width: 50px;
@@ -191,5 +200,10 @@ h2 {
 
 .error{
   color: red;
+}
+.footer{
+  position: absolute;
+  margin: 400px 0px 0px 1200px;
+  color: white;
 }
 

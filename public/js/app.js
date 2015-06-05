@@ -104,8 +104,8 @@ $(function() {
           var $current = $parent.children().last();
           removeAddField();
           $current.addClass('highlight');
+
           mainPane.turnOffListeners();
-          
           mainPane.enableGiftIdeasView(friends[$current.text()]);
         });
 
@@ -145,7 +145,7 @@ $(function() {
           $(this).parents('li').remove();
           $('.mainList').empty();
         });
-        
+
         $('.friendsList').one('mouseleave', 'li', function() {
           $(this).children('.editdelete').remove();
         });
@@ -191,7 +191,7 @@ $(function() {
 
       function listenForAdd() {
         // Add a new gift idea
-        $('.main-pane .add').one("click", function() {
+        $('.main-pane .add').on("click", function() {
           $(this).hide();
           deselectAll('.mainList');
           $('.mainList').remove('.edit-item');
@@ -245,13 +245,13 @@ $(function() {
             }
             storage.storeUser(user);
             $(this).parents('li').remove();
-          }); 
-          
+          });
+
           $('.mainList').on('mouseleave', 'li', function() {
             $(this).children('.editdelete').remove();
           });
         });
-      }  
+      }
 
       function cancelAdd() {
         $('.mainList .edit-item').remove();
