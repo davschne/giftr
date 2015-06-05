@@ -349,20 +349,30 @@ $(function() {
 
     // Log in as existing user
 
-    $('.loginButton').on('click', function() {
-      var userLogin = $('.userLogin').val();
-      var password = $('#login_password').val();
+    $('#existing-user-button').on('click', function(e) {
+      e.preventDefault();
+      var email = $('#email-existing').val();
+      var password = $('#password-existing').val();
       ref.authWithPassword({
-        'email': userLogin,
-        'password': password
+        // 'email': email,
+        // 'password': password
+
+        // DELETE THIS BIT, DUMMY!
+
+        'email': "david@david.com",
+        'password': "david"
+
+        // ^------ DELETE-------^
+
       }, authenticate);
     });
 
     // Create new account
 
-    $('.startbutton').on('click', function() {
-      var email = $('.firstname').val();
-      var password = $('#create_password').val();
+    $('#create-user-button').on('click', function(e) {
+      e.preventDefault();
+      var email = $('#email-new').val();
+      var password = $('#password-new').val();
       ref.createUser({
         'email': email,
         'password': password
