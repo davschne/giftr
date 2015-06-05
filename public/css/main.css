@@ -4,6 +4,7 @@
       #323a45 (blue/green)
       #f3efe6 (off-white)
       #ffffff (white)
+      #646464 (light grey from photo)
 */
 
 body {
@@ -82,23 +83,6 @@ li:hover {
   -webkit-text-security: disc;
   -moz-text-security: disc;
   text-security: disc;
-}
-
-.login-button {
-  border: 3px solid black;
-  width: 190px;
-  height: 50px;
-  background-color: #323a45;
-  font-size: 12pt;
-  color: white;
-}
-
-.login-button:hover {
-  border: 3px solid black;
-  width: 190px;
-  height: 50px;
-  background-color: #fa9d35;
-  font-size: 12pt;
 }
 
 form {
@@ -220,19 +204,21 @@ h2 {
   display: inline-block;
 }
 
-.accountButtons {
-  background: #f3efe6;
-  color: #323a45;
+.login-button, .account-button {
+  border: 3px solid black;
+  width: 190px;
+  height: 50px;
+  background-color: #646464;
+  font-size: 12pt;
+  color: white;
 }
 
-.accountButtons:hover {
-  color: #fa9d35;
-  border: 1px solid #fa9d35;
+.login-button:hover, .account-button:hover {
+  background-color: #fa9d35;
 }
 
-.accountButtons:active {
-  color: #323a45;
-  border: 1px solid #323a45;
+.login-button {
+  background-color: #323a45;
 }
 
 .welcome {
