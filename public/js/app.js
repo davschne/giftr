@@ -354,16 +354,8 @@ $(function() {
       var email = $('#email-existing').val();
       var password = $('#password-existing').val();
       ref.authWithPassword({
-        // 'email': email,
-        // 'password': password
-
-        // DELETE THIS BIT, DUMMY!
-
-        'email': "david@david.com",
-        'password': "david"
-
-        // ^------ DELETE-------^
-
+        'email': email,
+        'password': password
       }, authenticate);
     });
 
