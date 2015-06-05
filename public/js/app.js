@@ -268,15 +268,15 @@ $(function() {
             $item = $(this).parents('li');
             // Store item in case of cancel
             var cachedItem = $item.text();
-            $item.replaceWith('<span class="edit-item"><input type="text" id="new-gift" value="' + $item.children('.gift').text() + '"><button id="add-gift">Save</button><button id="cancel-gift">Cancel</button></span>');
+            $item.replaceWith('<span class="edit-item"><input type="text" id="new-gift" value="' + $item.children('.gift').text() + '"><button id="edit-gift">Save</button><button id="cancel-edit-gift">Cancel</button></span>');
             $('#new-gift').focus();
             // Event listener: remove edit controls if user clicks anywhere else
-            $('.container').on('click', ':not(.main-pane .highlight)', function() {
+            $('.container').on('click', ':not(.edit-item.find("*")', function() {
               cancelEdit(cachedItem);
             });
 
             // Confirm edit
-            $('#add-gift').on('click', function() {
+            $('#edit-gift').on('click', function() {
               var $gift = $('#new-gift').val();
               if (cachedItem != $gift) {
                 for (var i = 0; i < friend.gifts.length; i++) {
@@ -292,7 +292,7 @@ $(function() {
             });
 
             // Cancel edit
-            $('#cancel-gift').on('click', function() {
+            $('#cancel-edit-gift').on('click', function() {
               cancelEdit(cachedItem);
             });
           });
