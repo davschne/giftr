@@ -93,12 +93,12 @@ $(function() {
         deselectAll('.friendsList');
         $('.addNewGift').hide();
         $('.mainList').empty();
-        $list.append('<input type="text" class="new-friend" placeholder="Name"><button id="add">Add</button><button id="cancel">Cancel</button>');
-        $('.new-friend').focus();
+        $list.append('<input type="text" id="new-friend" placeholder="Name"><button id="add">Add</button><button id="cancel">Cancel</button>');
+        $('#new-friend').focus();
 
         // Confirm add
         $('#add').on('click', function() {
-          var newFriend = new Friend($('.new-friend').val());
+          var newFriend = new Friend($('#new-friend').val());
           user.addFriend(newFriend);
           var $parent = $list.append('<li class="friend">' + newFriend.name + '</li>');
           var $current = $parent.children().last();
@@ -114,7 +114,7 @@ $(function() {
       });
 
       function removeAddField() {
-        $('.new-friend').remove();
+        $('#new-friend').remove();
         $('#add').remove();
         $('#cancel').remove();
         $('.friends-pane .add').show();
@@ -134,12 +134,12 @@ $(function() {
         $list.find('.edit').on("click", function() {
           $item = $(this).parents('li');
           var cachedItem = $item.text();
-          $item.replaceWith('<span class="edit-item"><input type="text" class="new-friend" value="' + cachedItem + '"><button id="add-friend">Save</button><button id="cancel-friend">Cancel</button></span>');
-          $('.new-friend').focus();
+          $item.replaceWith('<span class="edit-item"><input type="text" id="new-friend" value="' + cachedItem + '"><button id="add-friend">Save</button><button id="cancel-friend">Cancel</button></span>');
+          $('#new-friend').focus();
 
           // Confirm edit
           $('#add-friend').on('click', function() {
-            var $newFriend = $('.new-friend').val();
+            var $newFriend = $('#new-friend').val();
             if (cachedItem != $newFriend) {
               var editFriend = new Friend($newFriend);
               editFriend.gifts = friends[cachedItem].gifts;
@@ -188,7 +188,7 @@ $(function() {
 
       function buildList() {
         // Create list of gifts from Friend object
-        $('.addNewGift').show();
+        $('.main-pane .add').show();
         $list = $('<ul class="mainList"></ul>');
         if (!friend.gifts) {
           friend.gifts = [];
@@ -349,20 +349,30 @@ $(function() {
 
     // Log in as existing user
 
-    $('.loginButton').on('click', function() {
-      var userLogin = $('.userLogin').val();
-      var password = $('#login_password').val();
+    $('#existing-user-button').on('click', function(e) {
+      e.preventDefault();
+      var email = $('#email-existing').val();
+      var password = $('#password-existing').val();
       ref.authWithPassword({
-        'email': userLogin,
-        'password': password
+        // 'email': email,
+        // 'password': password
+
+        // DELETE THIS BIT, DUMMY!
+
+        'email': "david@david.com",
+        'password': "david"
+
+        // ^------ DELETE-------^
+
       }, authenticate);
     });
 
     // Create new account
 
-    $('.startbutton').on('click', function() {
-      var email = $('.firstname').val();
-      var password = $('#create_password').val();
+    $('#create-user-button').on('click', function(e) {
+      e.preventDefault();
+      var email = $('#email-new').val();
+      var password = $('#password-new').val();
       ref.createUser({
         'email': email,
         'password': password
@@ -373,7 +383,7 @@ $(function() {
   }
 
   function enableLogoutListener() {
-    $('.accountButtons').on('click', function() {
+    $('#log-out').on('click', function() {
       ref.unauth();
       $('body').load('index.html #landing', function() {
         start();
