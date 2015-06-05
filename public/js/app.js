@@ -93,19 +93,18 @@ $(function() {
         deselectAll('.friendsList');
         $('.addNewGift').hide();
         $('.mainList').empty();
-        $list.append('<input type="text" id="new-friend" placeholder="Name"><button id="add">Add</button><button id="cancel">Cancel</button>');
-        $('#new-friend').focus();
+        $list.append('<input type="text" class="new-friend" placeholder="Name"><button id="add-friend">Add</button><button id="cancel">Cancel</button>');
+        $('.new-friend').focus();
 
         // Confirm add
-        $('#add').on('click', function() {
-          var newFriend = new Friend($('#new-friend').val());
+        $('#add-friend').on('click', function() {
+          var newFriend = new Friend($('.new-friend').val());
           user.addFriend(newFriend);
           var $parent = $list.append('<li class="friend">' + newFriend.name + '</li>');
           var $current = $parent.children().last();
           removeAddField();
           $current.addClass('highlight');
-          $current.append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
-
+          
           mainPane.enableGiftIdeasView(friends[$current.text()]);
         });
 
@@ -114,8 +113,8 @@ $(function() {
       });
 
       function removeAddField() {
-        $('#new-friend').remove();
-        $('#add').remove();
+        $('.new-friend').remove();
+        $('#add-friend').remove();
         $('#cancel').remove();
         $('.friends-pane .add').show();
       }
@@ -123,12 +122,19 @@ $(function() {
 
     // Select a friend
     function listenForSelect() {
+      function cancelEdit(cachedItem) {
+        $('ul .edit-item').replaceWith('<li><span class="friend">' + cachedItem + '</span></li>');
+        $('.main-pane .add').show();
+      }
+
       $list.on('click', 'li:not(.highlight)', function() {
         deselectAll('.friendsList');
         $(this).addClass('highlight');
-        $(this).append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
-
         mainPane.enableGiftIdeasView(friends[$(this).text()]);
+      });
+
+      $('.friendsList').on('mouseenter', 'li', function() {
+        $(this).append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
 
         // Edit button event listener
         $list.find('.edit').on("click", function() {
@@ -136,6 +142,11 @@ $(function() {
           var cachedItem = $item.text();
           $item.replaceWith('<span class="edit-item"><input type="text" id="new-friend" value="' + cachedItem + '"><button id="add-friend">Save</button><button id="cancel-friend">Cancel</button></span>');
           $('#new-friend').focus();
+
+          // Click anywhere on page to cancel edit
+          $('.container').on('click', ':not(.friend-pane .highlight)', function() {
+            cancelEdit(cachedItem);
+          });
 
           // Confirm edit
           $('#add-friend').on('click', function() {
@@ -148,13 +159,12 @@ $(function() {
               $('.mainList').empty();
             }
             // Modify list
-            $('ul .edit-item').replaceWith('<li><span class="friend">' + $newFriend + '</span></li>');
+            $('ul .edit-item').replaceWith('<li><span class="friend">' + $newFriend + '</span></li>');        
           });
 
           // Cancel edit
           $('#cancel-friend').on('click', function() {
-            $('ul .edit-item').replaceWith('<li><span class="friend">' + cachedItem + '</span></li>')
-            $('.main-pane .add').show();
+            cancelEdit(cachedItem);
           });
         });
 
@@ -165,14 +175,17 @@ $(function() {
           $(this).parents('li').remove();
           $('.mainList').empty();
         });
+        
+        $('.friendsList').one('mouseleave', 'li', function() {
+          $(this).children('.editdelete').remove();
+        });
       });
     }
   }
 
   function deselectAll(parentElement) {
     $(parentElement + ' .highlight')
-      .removeClass('highlight')
-      .children('.editdelete').remove();
+      .removeClass('highlight');
   }
 
   function MainPane() {
@@ -200,63 +213,13 @@ $(function() {
         $('.main-pane ul').replaceWith($list);
       }
 
-      function listenForSelect() {
-        // Select gift idea
-        $list.on("click", "li:not(.highlight)", function() {
-          deselectAll('.mainList');
-          $(this).addClass("highlight")
-                 .append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
-
-          // Edit button event listener
-          $(this).find('.edit').on("click", function() {
-            $item = $(this).parents('li');
-            var cachedItem = $item.text();
-            $item.replaceWith('<span class="edit-item"><input type="text" id="new-gift" value="' + $item.children('.gift').text() + '"><button id="add-gift">Save</button><button id="cancel-gift">Cancel</button></span>');
-            $('#new-gift').focus();
-
-            // Confirm edit
-            $('#add-gift').on('click', function() {
-              var $gift = $('#new-gift').val();
-              if (cachedItem != $gift) {
-                for (var i = 0; i < friend.gifts.length; i++) {
-                  if (friend.gifts[i].name == cachedItem) {
-                    friend.gifts[i].name = $gift;
-                  }
-                }
-              }
-              storage.storeUser(user);
-
-              // Modify list
-              $('ul .edit-item').replaceWith('<li><span class="gift">' + $gift + '</span></li>');
-            });
-
-            // Cancel edit
-            $('#cancel-gift').on('click', function() {
-              $('ul .edit-item').replaceWith('<li><span class="gift">' + cachedItem + '</span></li>')
-              $('.main-pane .add').show();
-            });
-          });
-
-          // Delete button event listener
-          $list.find('.delete').on("click", function() {
-            for (var i = 0; i < friend.gifts.length; i++) {
-              if (friend.gifts[i].name == $(this).parents('li').text()) {
-                friend.gifts.splice(i, 1);
-              }
-            }
-            storage.storeUser(user);
-            $(this).parents('li').remove();
-          });
-        });
-      }
-
       function listenForAdd() {
         // Add a new gift idea
         $('.main-pane .add').on("click", function() {
           $(this).hide();
           deselectAll('.mainList');
           // Create form field, edit & delete buttons
-          $list.append('<span class="edit-item"><input type="text" id="new-gift" placeholder="new gift idea"><button id="add-gift">Add</button><button id="cancel-gift">Cancel</button></span>');
+          $('.mainList').append('<span class="edit-item"><input type="text" id="new-gift" placeholder="new gift idea"><button id="add-gift">Add</button><button id="cancel-gift">Cancel</button></span>');
           $('#new-gift').focus();
 
           // Confirm add
@@ -280,6 +243,71 @@ $(function() {
           $('#cancel-gift').on('click', cancelAdd);
         });
       }
+
+      function listenForSelect() {
+        function cancelEdit(cachedItem) {
+          $('ul .edit-item').replaceWith('<li><span class="gift">' + cachedItem + '</span></li>');
+          $('.main-pane .add').show();
+        }
+        // Select gift idea
+        $list.on("click", "li:not(.highlight)", function() {
+          deselectAll('.mainList');
+          $(this).addClass("highlight");
+        });
+
+
+        $('.mainList').on('mouseenter', 'li', function() {
+          $(this).append('<div class="editdelete"><button class="edit"><img src="images/edit.png"></button><button class="delete"><img src="images/delete.png"></button></div>');
+          // Edit button event listener
+          $(this).find('.edit').on("click", function() {
+            $item = $(this).parents('li');
+            // Store item in case of cancel
+            var cachedItem = $item.text();
+            $item.replaceWith('<span class="edit-item"><input type="text" id="new-gift" value="' + $item.children('.gift').text() + '"><button id="edit-gift">Save</button><button id="cancel-edit-gift">Cancel</button></span>');
+            $('#new-gift').focus();
+            // Event listener: remove edit controls if user clicks anywhere else
+            $('.container').on('click', ':not(.edit-item.find("*")', function() {
+              cancelEdit(cachedItem);
+            });
+
+            // Confirm edit
+            $('#edit-gift').on('click', function() {
+              var $gift = $('#new-gift').val();
+              if (cachedItem != $gift) {
+                for (var i = 0; i < friend.gifts.length; i++) {
+                  if (friend.gifts[i].name == cachedItem) {
+                    friend.gifts[i].name = $gift;
+                  }
+                }
+              }
+              storage.storeUser(user);
+
+              // Modify list
+              $('ul .edit-item').replaceWith('<li><span class="gift">' + $gift + '</span></li>');
+            });
+
+            // Cancel edit
+            $('#cancel-edit-gift').on('click', function() {
+              cancelEdit(cachedItem);
+            });
+          });
+
+          // Delete button event listener
+          $list.find('.delete').on("click", function() {
+            for (var i = 0; i < friend.gifts.length; i++) {
+              if (friend.gifts[i].name == $(this).parents('li').text()) {
+                friend.gifts.splice(i, 1);
+              }
+            }
+            storage.storeUser(user);
+            $(this).parents('li').remove();
+          }); 
+          
+          $('.mainList').on('mouseleave', 'li', function() {
+            $(this).children('.editdelete').remove();
+          });
+        });
+      }  
 
       function cancelAdd() {
         $('.mainList .edit-item').remove();
@@ -336,7 +364,6 @@ $(function() {
         // Create the user object
 
         user = storage.getUser(snapshot);
-        console.log(user);
 
         // Start the application!
 
