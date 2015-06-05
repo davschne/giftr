@@ -15,32 +15,35 @@
     <script src="https://cdn.firebase.com/js/client/2.2.6/firebase.js"></script>
     <script src="js/app.js" type="text/javascript"></script>
   </head>
-  <body class="container">
-    <section id="landing">
-      <h1>Giftr<span class="com">.com</span></h1>
+  <body>
+    <section id="landing" class="container">
+
+      <header>
+        <h1>Giftr<span class="com">.com</span></h1>
+      </header>
+
       <img class="bgphoto twelve columns" src="images/girl-opening-box.jpg">
-      <p class="nameprompt">Welcome to Giftr!</p>
 
-      <input class="firstname" type="text" name="name" placeholder="Enter email address"/>
-      <input class="password" id="create_password" type="password" name="name" placeholder="Enter a new password"/>
-      <br>
-      <span class="error" id="create-error"></span>
+      <form>
+        <p class="nameprompt">Welcome to Giftr!</p>
 
-      <br>
+        <input id="email-new" type="text" name="name" placeholder="Enter email address"/>
+        <input id="password-new" id="create_password" type="password" name="name" placeholder="Enter a new password"/>
+        <br>
+        <span class="error" id="create-error"></span>
+        <br>
+        <button class="login-button" id="create-user-button">Start Giving</button>
 
-      <button class="startbutton">Start Giving</button>
-      <p class="returningUser">Already a user?</p>
+        <p class="returningUser">Already a user?</p>
 
-      <input class="userLogin" type="text" placeholder="Enter email address" />
-      <input class="loginpassword" id="login_password" type="password" placeholder="Enter password" />
-      <br>
-      <span class="error" id="login-error"></span>
+        <input class="email-existing" type="text" placeholder="Enter email address" />
+        <input class="password-existing" id="login_password" type="password" placeholder="Enter password" />
+        <br>
+        <span class="error" id="login-error"></span>
+        <br>
+        <button class="login-button" id="existing-user-button">Log in</button>
+      </form>
 
-
-      <br>
-      <button class="loginButton">Log in</button>
     </section>
   </body>
 </html>
-
-<!-- blah -->
